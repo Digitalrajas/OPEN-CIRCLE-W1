@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Dark tile keeps the white petals visible on light browser tabs -->
+  <rect width="100" height="100" rx="22" fill="#18181B"/>
+  <!-- OpenSkooll mark (same paths as the navbar logo), scaled to sit centred on the tile -->
+  <g transform="translate(50 50) scale(0.84) translate(-52 -49)">
+    <g transform="translate(52, 48)">
+      <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(-62)"/>
+      <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(-17)"/>
+      <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(28)"/>
+      <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(73)"/>
+      <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(118)"/>
+    </g>
+    <circle cx="52" cy="48" r="16" fill="#18181B"/>
+    <path d="M29 82 L47 50" stroke="#5CE614" stroke-width="13.5" stroke-linecap="butt"/>
+    <path d="M16 58 L47.5 50.5 L55 82" stroke="#5CE614" stroke-width="13.5" stroke-linecap="butt" stroke-linejoin="miter" fill="none"/>
+  </g>
+</svg>
