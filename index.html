@@ -699,6 +699,7 @@
                 </div>
 
                 <div class="pt-2.5">
+                    <p id="formError" class="hidden text-center text-[12px] text-red-400 mb-3" role="alert"></p>
                     <button type="submit" id="submitBtn" class="apple-btn-primary w-full py-4 rounded-2xl text-[15px] font-semibold tracking-[-0.01em] flex items-center justify-center gap-2">
                         <span>Register Now</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -1077,7 +1078,10 @@
         }, 9500);
 
         // ========== Form Submission Handler ==========
-        function handleRegistration(event) {
+        // Google Apps Script web app URL (see google-apps-script/Code.gs)
+        const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzD5pllfusF335MudbTKC3QXf3EcAmv7M1kZnY5lzJdIE9PHIEySH68OXv1S5bY0A1M/exec';
+
+        async function handleRegistration(event) {
             event.preventDefault();
 
             if (isRegistrationClosed()) {
@@ -1088,22 +1092,43 @@
             const btn = document.getElementById('submitBtn');
             const form = document.getElementById('registrationForm');
             const success = document.getElementById('successState');
-            
+            const errorEl = document.getElementById('formError');
+            const originalBtnHTML = btn.innerHTML;
+
             // Loading UI
+            errorEl.classList.add('hidden');
             btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Submitting Registration...</span>';
             btn.disabled = true;
             btn.classList.add('opacity-80');
 
-            // Simulate Registration Confirmation
-            setTimeout(() => {
+            try {
+                // URL-encoded body keeps this a "simple" request, so Apps Script needs no CORS preflight
+                const response = await fetch(SHEETS_ENDPOINT, {
+                    method: 'POST',
+                    body: new URLSearchParams(new FormData(form))
+                });
+                const result = await response.json();
+
+                if (result.error === 'closed') {
+                    showRegistrationClosed();
+                    return;
+                }
+                if (!result.ok) throw new Error(result.error || 'submit_failed');
+
                 form.classList.add('hidden');
                 success.classList.remove('hidden');
-                
+
                 if (availableSeats > 1) {
                     availableSeats -= 1;
                     updateSeatUI();
                 }
-            }, 900);
+            } catch (err) {
+                errorEl.textContent = "Couldn't submit your registration. Please check your connection and try again.";
+                errorEl.classList.remove('hidden');
+                btn.innerHTML = originalBtnHTML;
+                btn.disabled = false;
+                btn.classList.remove('opacity-80');
+            }
         }
 
         // ========== Scroll Reveal Animation ==========
