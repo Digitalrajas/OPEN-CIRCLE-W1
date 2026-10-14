@@ -259,6 +259,17 @@
         .delay-3 { animation-delay: 0.24s; }
         .delay-4 { animation-delay: 0.32s; }
 
+        /* Registration Closed State (toggled on body after deadline) */
+        #closedState { display: none; }
+        body.registration-closed #closedState {
+            display: flex;
+            animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        body.registration-closed main,
+        body.registration-closed #floating-timer-bar,
+        body.registration-closed #nav-status { display: none !important; }
+        body.registration-closed { padding-bottom: 1.25rem; }
+
         /* FAQ Accordion */
         .faq-answer {
             max-height: 0;
@@ -373,11 +384,11 @@
             </a>
 
             <!-- Right Status Pill -->
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2" id="nav-status">
                 <!-- Live Top Mini Timer Badge -->
                 <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-osNeon/10 border border-osNeon/25 text-[11px] font-mono font-semibold text-osNeon">
                     <i class="fa-solid fa-stopwatch text-[10px] timer-icon-shake"></i>
-                    <span class="js-timer-compact">47:59:42</span>
+                    <span class="js-timer-compact">72:00:00</span>
                 </div>
                 <a href="#register" id="nav-register-btn" class="px-3.5 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] shadow-inner text-[11px] font-semibold text-white tracking-tight transition-all flex items-center gap-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-osNeon animate-pulse"></span>
@@ -386,6 +397,44 @@
             </div>
         </div>
     </nav>
+
+    <!-- Registrations Closed Screen (shown automatically after the deadline) -->
+    <section id="closedState" class="w-full max-w-[540px] z-10 flex-1 flex-col items-center justify-center" aria-label="Registrations Closed">
+        <div class="apple-glass rounded-[36px] p-7 md:p-9 w-full text-center">
+            <div class="w-14 h-14 apple-icon-box rounded-2xl flex items-center justify-center mx-auto mb-5 border-osNeon/40">
+                <i class="fa-solid fa-lock text-xl text-osNeon"></i>
+            </div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/[0.06] border border-white/[0.12] text-[11px] font-semibold text-appleGray mb-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-appleGray"></span>
+                <span>Open Circle Workshop #1 • AI 101</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-white mb-3">Registrations Closed</h1>
+            <p class="text-appleGray text-sm mb-7 max-w-sm mx-auto leading-relaxed">
+                Thank you for the overwhelming response! Registration for <span class="text-white font-medium">AI 101: Learn &amp; Build with AI</span> closed on 17 October at midnight.
+            </p>
+
+            <div class="p-4 apple-bento rounded-2xl flex items-center gap-3.5 text-left mb-7">
+                <div class="w-2.5 h-2.5 rounded-full bg-osNeon animate-pulse flex-shrink-0"></div>
+                <div>
+                    <p class="text-[10px] text-appleGray uppercase tracking-wider font-medium">Already registered?</p>
+                    <p class="text-white font-semibold text-xs tracking-tight leading-relaxed">You're all set. Venue and timing details will be sent on your WhatsApp.</p>
+                </div>
+            </div>
+
+            <p class="text-[12px] font-medium text-appleGray mb-3 tracking-tight">Follow us to catch the next Open Circle workshop</p>
+            <div class="flex flex-wrap items-center justify-center gap-2.5">
+                <a href="https://instagram.com/openskooll" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full apple-bento hover:bg-white/[0.08] text-xs font-medium text-white/90 transition-all">
+                    <i class="fa-brands fa-instagram text-osNeon text-sm"></i>
+                    <span>@openskooll</span>
+                </a>
+                <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full apple-bento hover:bg-white/[0.08] text-xs font-medium text-white/90 transition-all">
+                    <i class="fa-brands fa-whatsapp text-osNeon text-sm"></i>
+                    <span>WhatsApp Support</span>
+                </a>
+            </div>
+        </div>
+        <p class="mt-8 text-[11px] text-appleGray text-center">Copyright &copy; 2026 OpenSkooll. All rights reserved.</p>
+    </section>
 
     <main class="w-full max-w-[540px] z-10">
         
@@ -498,6 +547,164 @@
             </div>
         </div>
 
+        <!-- Main Apple Pro Sheet Registration Card -->
+        <section id="register" class="apple-glass rounded-[36px] p-6 md:p-8 mb-10 relative reveal" aria-label="Registration Form">
+            
+            <!-- Card Header -->
+            <div class="flex items-start justify-between gap-3 mb-6">
+                <div>
+                    <h3 class="text-[22px] font-bold text-white tracking-[-0.025em] leading-tight">Workshop Registration</h3>
+                    <p class="text-[13px] text-appleGray mt-1">First come, first served. Free entry for selected participants.</p>
+                </div>
+                <div class="px-3 py-1.5 rounded-full apple-bento text-osNeon text-[11px] font-semibold tracking-tight flex items-center gap-1.5 flex-shrink-0">
+                    <i class="fa-solid fa-user-check text-[10px]"></i>
+                    <span>Only 200 Spots</span>
+                </div>
+            </div>
+
+            <!-- Live Registrations + Countdown Widget -->
+            <div class="apple-bento rounded-[24px] p-4 md:p-5 mb-7 space-y-4">
+                <!-- Live Registrations Row -->
+                <div>
+                    <div class="flex justify-between items-baseline mb-2.5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-osNeon animate-pulse"></span>
+                            <span class="text-[13px] font-semibold text-white tracking-tight">Live Registrations</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="seats-left" class="text-osNeon font-bold text-xl tracking-tight transition-transform duration-300 inline-block">29</span>
+                            <span class="text-xs text-appleGray"> of 200 registrations left</span>
+                        </div>
+                    </div>
+                    <!-- Recessed Apple Progress Track -->
+                    <div class="w-full h-2.5 apple-recessed rounded-full overflow-hidden p-[2px]">
+                        <div id="seat-bar" class="h-full bg-gradient-to-r from-[#45b80b] to-osNeon rounded-full transition-all duration-700" style="width: 85.5%"></div>
+                    </div>
+                    <div class="flex justify-between items-center mt-2.5 text-[11px] text-appleGray">
+                        <span>Students from Nashik colleges</span>
+                        <span id="claimed-count" class="font-mono text-white/90 font-semibold">171 registered</span>
+                    </div>
+                </div>
+
+                <!-- FOMO Countdown Bar -->
+                <div class="pt-3.5 border-t border-white/[0.08] flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 text-xs text-white/90 font-medium">
+                        <div class="w-6 h-6 rounded-lg apple-icon-box flex items-center justify-center">
+                            <i class="fa-regular fa-hourglass-half text-osNeon text-[10px]"></i>
+                        </div>
+                        <span>Registration closes in:</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 font-mono text-xs font-semibold">
+                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-white">
+                            <span id="timer-hours">72</span><span class="text-[10px] text-appleGray ml-0.5">h</span>
+                        </div>
+                        <span class="text-appleGray font-bold">:</span>
+                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-white">
+                            <span id="timer-minutes">00</span><span class="text-[10px] text-appleGray ml-0.5">m</span>
+                        </div>
+                        <span class="text-appleGray font-bold">:</span>
+                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-osNeon border-osNeon/25">
+                            <span id="timer-seconds">00</span><span class="text-[10px] text-osNeon/70 ml-0.5">s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-4">
+                
+                <div>
+                    <label for="fullName" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="Enter your full name" autocomplete="name">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <div>
+                        <label for="whatsapp" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">WhatsApp Number</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="+91 98765 43210" autocomplete="tel">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Email Address</label>
+                        <input type="email" id="email" name="email" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="yourname@gmail.com" autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <div>
+                        <label for="college" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">College / University Name</label>
+                        <input type="text" id="college" name="college" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="e.g. KBTCOE, KK Wagh, BYK">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">City / Location</label>
+                        <input type="text" id="city" name="city" required value="Nashik" class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="Nashik">
+                    </div>
+                </div>
+
+                <!-- Apple Hardware-Style Radio Selector for Laptop -->
+                <div class="pt-1.5">
+                    <div class="flex items-center justify-between mb-2 mx-1">
+                        <label class="text-[12px] font-medium text-white/85 tracking-tight">Will you bring a laptop?</label>
+                        <span class="text-[11px] text-osNeon font-medium">Required for practical</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="apple-radio cursor-pointer" id="laptop-yes-label">
+                            <input type="radio" name="laptop" value="yes" required class="sr-only" checked>
+                            <div class="apple-radio-card p-3.5 rounded-2xl flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[13px] font-semibold text-white tracking-tight">Yes, I will bring</span>
+                                    <span class="block text-[11px] text-appleGray mt-0.5">I have a laptop</span>
+                                </div>
+                                <span class="check-ring w-5 h-5 rounded-full border border-white/25 bg-black/40 flex items-center justify-center transition-all flex-shrink-0">
+                                    <i class="fa-solid fa-check text-[10px] text-black opacity-0 transform scale-50 transition-all"></i>
+                                </span>
+                            </div>
+                        </label>
+                        <label class="apple-radio cursor-pointer" id="laptop-no-label">
+                            <input type="radio" name="laptop" value="no" class="sr-only">
+                            <div class="apple-radio-card p-3.5 rounded-2xl flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[13px] font-semibold text-white tracking-tight">No, I don't have</span>
+                                    <span class="block text-[11px] text-appleGray mt-0.5">Pair me with a partner</span>
+                                </div>
+                                <span class="check-ring w-5 h-5 rounded-full border border-white/25 bg-black/40 flex items-center justify-center transition-all flex-shrink-0">
+                                    <i class="fa-solid fa-check text-[10px] text-black opacity-0 transform scale-50 transition-all"></i>
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2.5">
+                    <button type="submit" id="submitBtn" class="apple-btn-primary w-full py-4 rounded-2xl text-[15px] font-semibold tracking-[-0.01em] flex items-center justify-center gap-2">
+                        <span>Register Now</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <p class="text-center text-[11px] text-appleGray pt-1">
+                    Only 200 spots available. We will send your entry pass on WhatsApp.
+                </p>
+            </form>
+
+            <!-- Confirmation State -->
+            <div id="successState" class="hidden text-center py-6">
+                <div class="w-14 h-14 apple-icon-box rounded-2xl flex items-center justify-center mx-auto mb-4 border-osNeon/40">
+                    <i class="fa-solid fa-check text-xl text-osNeon"></i>
+                </div>
+                <h3 class="text-2xl font-bold tracking-[-0.02em] text-white mb-1.5">Registration Successful!</h3>
+                <p class="text-appleGray text-sm mb-6 max-w-xs mx-auto leading-relaxed">
+                    Your registration for <span class="text-white font-medium">Open Circle Workshop #1</span> is received. We will send the venue and timing details on your WhatsApp.
+                </p>
+                <div class="p-4 apple-bento rounded-2xl inline-flex items-center gap-3.5 text-left">
+                    <div class="w-2.5 h-2.5 rounded-full bg-osNeon animate-pulse"></div>
+                    <div>
+                        <p class="text-[10px] text-appleGray uppercase tracking-wider font-medium">Registration Status</p>
+                        <p class="text-white font-semibold text-xs tracking-tight">Confirmed • AI 101 Nashik</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
         <!-- ====== NEW: What You'll Learn — Curriculum Section ====== -->
         <section class="mb-10 reveal" id="curriculum">
             <div class="text-center mb-6">
@@ -605,164 +812,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Main Apple Pro Sheet Registration Card -->
-        <section id="register" class="apple-glass rounded-[36px] p-6 md:p-8 relative reveal" aria-label="Registration Form">
-            
-            <!-- Card Header -->
-            <div class="flex items-start justify-between gap-3 mb-6">
-                <div>
-                    <h3 class="text-[22px] font-bold text-white tracking-[-0.025em] leading-tight">Workshop Registration</h3>
-                    <p class="text-[13px] text-appleGray mt-1">First come, first served. Free entry for selected participants.</p>
-                </div>
-                <div class="px-3 py-1.5 rounded-full apple-bento text-osNeon text-[11px] font-semibold tracking-tight flex items-center gap-1.5 flex-shrink-0">
-                    <i class="fa-solid fa-user-check text-[10px]"></i>
-                    <span>Only 200 Spots</span>
-                </div>
-            </div>
-
-            <!-- Live Registrations + 48-Hour Countdown Widget -->
-            <div class="apple-bento rounded-[24px] p-4 md:p-5 mb-7 space-y-4">
-                <!-- Live Registrations Row -->
-                <div>
-                    <div class="flex justify-between items-baseline mb-2.5">
-                        <div class="flex items-center gap-2">
-                            <span class="w-2 h-2 rounded-full bg-osNeon animate-pulse"></span>
-                            <span class="text-[13px] font-semibold text-white tracking-tight">Live Registrations</span>
-                        </div>
-                        <div class="text-right">
-                            <span id="seats-left" class="text-osNeon font-bold text-xl tracking-tight transition-transform duration-300 inline-block">29</span>
-                            <span class="text-xs text-appleGray"> of 200 registrations left</span>
-                        </div>
-                    </div>
-                    <!-- Recessed Apple Progress Track -->
-                    <div class="w-full h-2.5 apple-recessed rounded-full overflow-hidden p-[2px]">
-                        <div id="seat-bar" class="h-full bg-gradient-to-r from-[#45b80b] to-osNeon rounded-full transition-all duration-700" style="width: 85.5%"></div>
-                    </div>
-                    <div class="flex justify-between items-center mt-2.5 text-[11px] text-appleGray">
-                        <span>Students from Nashik colleges</span>
-                        <span id="claimed-count" class="font-mono text-white/90 font-semibold">171 registered</span>
-                    </div>
-                </div>
-
-                <!-- 48-Hour FOMO Countdown Bar -->
-                <div class="pt-3.5 border-t border-white/[0.08] flex items-center justify-between gap-2">
-                    <div class="flex items-center gap-2 text-xs text-white/90 font-medium">
-                        <div class="w-6 h-6 rounded-lg apple-icon-box flex items-center justify-center">
-                            <i class="fa-regular fa-hourglass-half text-osNeon text-[10px]"></i>
-                        </div>
-                        <span>Registration closes in:</span>
-                    </div>
-                    <div class="flex items-center gap-1.5 font-mono text-xs font-semibold">
-                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-white">
-                            <span id="timer-hours">47</span><span class="text-[10px] text-appleGray ml-0.5">h</span>
-                        </div>
-                        <span class="text-appleGray font-bold">:</span>
-                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-white">
-                            <span id="timer-minutes">59</span><span class="text-[10px] text-appleGray ml-0.5">m</span>
-                        </div>
-                        <span class="text-appleGray font-bold">:</span>
-                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-osNeon border-osNeon/25">
-                            <span id="timer-seconds">42</span><span class="text-[10px] text-osNeon/70 ml-0.5">s</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-4">
-                
-                <div>
-                    <label for="fullName" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="Enter your full name" autocomplete="name">
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <div>
-                        <label for="whatsapp" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">WhatsApp Number</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="+91 98765 43210" autocomplete="tel">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Email Address</label>
-                        <input type="email" id="email" name="email" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="yourname@gmail.com" autocomplete="email">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-                    <div>
-                        <label for="college" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">College / University Name</label>
-                        <input type="text" id="college" name="college" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="e.g. KBTCOE, KK Wagh, BYK">
-                    </div>
-                    <div>
-                        <label for="city" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">City / Location</label>
-                        <input type="text" id="city" name="city" required value="Nashik" class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="Nashik">
-                    </div>
-                </div>
-
-                <!-- Apple Hardware-Style Radio Selector for Laptop -->
-                <div class="pt-1.5">
-                    <div class="flex items-center justify-between mb-2 mx-1">
-                        <label class="text-[12px] font-medium text-white/85 tracking-tight">Will you bring a laptop?</label>
-                        <span class="text-[11px] text-osNeon font-medium">Required for practical</span>
-                    </div>
-                    <div class="grid grid-cols-2 gap-3">
-                        <label class="apple-radio cursor-pointer" id="laptop-yes-label">
-                            <input type="radio" name="laptop" value="yes" required class="sr-only" checked>
-                            <div class="apple-radio-card p-3.5 rounded-2xl flex items-center justify-between">
-                                <div>
-                                    <span class="block text-[13px] font-semibold text-white tracking-tight">Yes, I will bring</span>
-                                    <span class="block text-[11px] text-appleGray mt-0.5">I have a laptop</span>
-                                </div>
-                                <span class="check-ring w-5 h-5 rounded-full border border-white/25 bg-black/40 flex items-center justify-center transition-all flex-shrink-0">
-                                    <i class="fa-solid fa-check text-[10px] text-black opacity-0 transform scale-50 transition-all"></i>
-                                </span>
-                            </div>
-                        </label>
-                        <label class="apple-radio cursor-pointer" id="laptop-no-label">
-                            <input type="radio" name="laptop" value="no" class="sr-only">
-                            <div class="apple-radio-card p-3.5 rounded-2xl flex items-center justify-between">
-                                <div>
-                                    <span class="block text-[13px] font-semibold text-white tracking-tight">No, I don't have</span>
-                                    <span class="block text-[11px] text-appleGray mt-0.5">Pair me with a partner</span>
-                                </div>
-                                <span class="check-ring w-5 h-5 rounded-full border border-white/25 bg-black/40 flex items-center justify-center transition-all flex-shrink-0">
-                                    <i class="fa-solid fa-check text-[10px] text-black opacity-0 transform scale-50 transition-all"></i>
-                                </span>
-                            </div>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="pt-2.5">
-                    <button type="submit" id="submitBtn" class="apple-btn-primary w-full py-4 rounded-2xl text-[15px] font-semibold tracking-[-0.01em] flex items-center justify-center gap-2">
-                        <span>Register Now</span>
-                        <i class="fa-solid fa-arrow-right text-xs"></i>
-                    </button>
-                </div>
-
-                <p class="text-center text-[11px] text-appleGray pt-1">
-                    Only 200 spots available. We will send your entry pass on WhatsApp.
-                </p>
-            </form>
-
-            <!-- Confirmation State -->
-            <div id="successState" class="hidden text-center py-6">
-                <div class="w-14 h-14 apple-icon-box rounded-2xl flex items-center justify-center mx-auto mb-4 border-osNeon/40">
-                    <i class="fa-solid fa-check text-xl text-osNeon"></i>
-                </div>
-                <h3 class="text-2xl font-bold tracking-[-0.02em] text-white mb-1.5">Registration Successful!</h3>
-                <p class="text-appleGray text-sm mb-6 max-w-xs mx-auto leading-relaxed">
-                    Your registration for <span class="text-white font-medium">Open Circle Workshop #1</span> is received. We will send the venue and timing details on your WhatsApp.
-                </p>
-                <div class="p-4 apple-bento rounded-2xl inline-flex items-center gap-3.5 text-left">
-                    <div class="w-2.5 h-2.5 rounded-full bg-osNeon animate-pulse"></div>
-                    <div>
-                        <p class="text-[10px] text-appleGray uppercase tracking-wider font-medium">Registration Status</p>
-                        <p class="text-white font-semibold text-xs tracking-tight">Confirmed • AI 101 Nashik</p>
-                    </div>
-                </div>
-            </div>
-
         </section>
 
         <!-- ====== NEW: FAQ Section ====== -->
@@ -884,11 +933,11 @@
             <!-- Right: High-Visibility Ticking Clock + Quick Jump CTA -->
             <div class="flex items-center gap-2 flex-shrink-0">
                 <div class="apple-recessed px-3 py-1.5 rounded-full border border-osNeon/30 flex items-center gap-1 font-mono text-xs sm:text-sm font-bold text-white shadow-inner">
-                    <span id="float-hours" class="text-white">47</span><span class="text-[10px] text-appleGray font-normal">h</span>
+                    <span id="float-hours" class="text-white">72</span><span class="text-[10px] text-appleGray font-normal">h</span>
                     <span class="text-osNeon animate-pulse">:</span>
-                    <span id="float-minutes" class="text-white">59</span><span class="text-[10px] text-appleGray font-normal">m</span>
+                    <span id="float-minutes" class="text-white">00</span><span class="text-[10px] text-appleGray font-normal">m</span>
                     <span class="text-osNeon animate-pulse">:</span>
-                    <span id="float-seconds" class="text-osNeon">42</span><span class="text-[10px] text-osNeon/80 font-normal">s</span>
+                    <span id="float-seconds" class="text-osNeon">00</span><span class="text-[10px] text-osNeon/80 font-normal">s</span>
                 </div>
 
                 <a href="#register" class="apple-btn-primary px-3.5 py-2 rounded-full text-xs font-bold tracking-tight flex items-center gap-1 flex-shrink-0" id="floating-register-btn">
@@ -901,9 +950,23 @@
     </div>
 
     <script>
-        // ========== Configurable Countdown Duration ==========
-        const COUNTDOWN_HOURS = 48;
-        let deadlineTimestamp = new Date().getTime() + (COUNTDOWN_HOURS * 60 * 60 * 1000) - (18 * 1000);
+        // ========== Fixed Registration Window (IST) ==========
+        // Timer holds at the full window until START, then counts down to DEADLINE (17 Oct, 24:00 IST)
+        const countdownStartTimestamp = new Date('2026-10-15T00:00:00+05:30').getTime();
+        const deadlineTimestamp = new Date('2026-10-18T00:00:00+05:30').getTime();
+
+        // Add ?preview=closed to the URL to see the closed screen before the deadline
+        const forceClosedPreview = new URLSearchParams(window.location.search).get('preview') === 'closed';
+
+        function isRegistrationClosed() {
+            return forceClosedPreview || Date.now() >= deadlineTimestamp;
+        }
+
+        function showRegistrationClosed() {
+            document.body.classList.add('registration-closed');
+            document.title = 'Registrations Closed | Open Circle by OpenSkooll';
+            window.scrollTo(0, 0);
+        }
 
         function initCountdown() {
             const hoursEl = document.getElementById('timer-hours');
@@ -915,8 +978,16 @@
             const floatSecondsEl = document.getElementById('float-seconds');
             const compactTimers = document.querySelectorAll('.js-timer-compact');
 
+            let timerInterval;
+
             function updateTimer() {
-                const currentTime = new Date().getTime();
+                if (isRegistrationClosed()) {
+                    clearInterval(timerInterval);
+                    showRegistrationClosed();
+                    return;
+                }
+
+                const currentTime = Math.max(Date.now(), countdownStartTimestamp);
                 let diff = Math.max(0, deadlineTimestamp - currentTime);
 
                 const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -945,8 +1016,8 @@
                 });
             }
 
+            timerInterval = setInterval(updateTimer, 1000);
             updateTimer();
-            setInterval(updateTimer, 1000);
         }
 
         initCountdown();
@@ -989,7 +1060,12 @@
         // ========== Form Submission Handler ==========
         function handleRegistration(event) {
             event.preventDefault();
-            
+
+            if (isRegistrationClosed()) {
+                showRegistrationClosed();
+                return;
+            }
+
             const btn = document.getElementById('submitBtn');
             const form = document.getElementById('registrationForm');
             const success = document.getElementById('successState');
