@@ -6,22 +6,29 @@
     <title>AI 101 Workshop | Open Circle by OpenSkooll — Nashik</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Join Open Circle Workshop #1 — AI 101: Learn & Build with AI. A free, hands-on, offline workshop in Nashik by OpenSkooll. Only 200 spots available. Register now!">
+    <meta name="description" content="Open Circle Workshop #1 by OpenSkooll. A hands-on, in-person AI workshop in Nashik on Sun, 18 Oct 2026 at 10:00 AM. Free for the first 200 students (regular price ₹999). Register now!">
     <meta name="keywords" content="AI workshop, artificial intelligence, Nashik, OpenSkooll, Open Circle, free workshop, learn AI, build with AI, hands-on AI">
     <meta name="author" content="OpenSkooll">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph / Social Sharing -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="AI 101 Workshop | Open Circle by OpenSkooll">
-    <meta property="og:description" content="A practical offline workshop in Nashik to understand how AI works, learn the right tools, and build something real. Only 200 spots — Register free!">
+    <meta property="og:title" content="AI 101: Live in Nashik · Sun, 18 Oct · Open Circle by OpenSkooll">
+    <meta property="og:description" content="Open Circle Workshop #1 by OpenSkooll. A hands-on, in-person AI workshop in Nashik on Sun, 18 Oct 2026 at 10:00 AM. Free for the first 200 students (regular price ₹999).">
+    <meta property="og:image" content="https://digitalrajas.github.io/OPEN-CIRCLE-W1/images/banner.jpg">
+    <meta property="og:image:secure_url" content="https://digitalrajas.github.io/OPEN-CIRCLE-W1/images/banner.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1080">
+    <meta property="og:image:height" content="1080">
+    <meta property="og:image:alt" content="AI 101. Live in Nashik. Sunday, 18th October, 10:00 AM. Free for the first 200.">
     <meta property="og:url" content="https://digitalrajas.github.io/OPEN-CIRCLE-W1/">
     <meta property="og:site_name" content="OpenSkooll">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AI 101 Workshop | Open Circle by OpenSkooll">
-    <meta name="twitter:description" content="Free hands-on AI workshop in Nashik. Learn, build, and explore AI with industry mentors. Only 200 spots!">
+    <meta name="twitter:title" content="AI 101: Live in Nashik · Sun, 18 Oct · Open Circle by OpenSkooll">
+    <meta name="twitter:description" content="Open Circle Workshop #1 by OpenSkooll. A hands-on, in-person AI workshop in Nashik on Sun, 18 Oct 2026 at 10:00 AM. Free for the first 200 students (regular price ₹999).">
+    <meta name="twitter:image" content="https://digitalrajas.github.io/OPEN-CIRCLE-W1/images/banner.jpg">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -377,6 +384,7 @@
             "name": "OpenSkooll",
             "url": "https://openskooll.com"
         },
+        "startDate": "2026-10-18T10:00:00+05:30",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "location": {
             "@type": "Place",
@@ -392,6 +400,8 @@
         "isAccessibleForFree": true
     }
     </script>
+    <!-- Without JavaScript, never leave scroll-reveal sections invisible -->
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-between pt-5 pb-28 px-4 relative overflow-x-hidden selection:bg-osNeon selection:text-black">
 
@@ -437,7 +447,9 @@
         </div>
     </nav>
 
-    <!-- Registrations Closed Screen (shown automatically after the deadline) -->
+    <!-- Registrations Closed Screen: kept in a <template> so it is not rendered or part of the page text;
+         showRegistrationClosed() inserts it after the deadline -->
+    <template id="closedTemplate">
     <section id="closedState" class="w-full max-w-[540px] z-10 flex-1 flex-col items-center justify-center" aria-label="Registrations Closed">
         <div class="apple-glass rounded-[36px] p-7 md:p-9 w-full text-center">
             <div class="w-14 h-14 apple-icon-box rounded-2xl flex items-center justify-center mx-auto mb-5 border-osNeon/40">
@@ -474,6 +486,7 @@
         </div>
         <p class="mt-8 text-[11px] text-appleGray text-center">Copyright &copy; 2026 OpenSkooll. All rights reserved.</p>
     </section>
+    </template>
 
     <main class="w-full max-w-[540px] z-10">
         
@@ -497,6 +510,10 @@
                 Understand AI. <br>
                 <span class="apple-title-gradient">Start building with it.</span>
             </h1>
+            <p class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-osNeon/10 border border-osNeon/25 text-[13px] font-semibold text-white tracking-tight mb-4" id="event-datetime">
+                <i class="fa-regular fa-calendar text-osNeon text-[12px]"></i>
+                <span>Sun, 18 Oct 2026 · 10:00 AM · Nashik</span>
+            </p>
             <p class="text-appleGray text-[15px] md:text-[16px] leading-[1.55] max-w-[440px] mx-auto mb-7 font-normal tracking-[-0.01em]">
                 A practical offline workshop in Nashik to understand how AI works, learn the right tools, and build something real.
             </p>
@@ -534,7 +551,7 @@
             <div class="flex items-start justify-between gap-3 mb-6">
                 <div>
                     <h3 class="text-[22px] font-bold text-white tracking-[-0.025em] leading-tight">Workshop Registration</h3>
-                    <p class="text-[13px] text-appleGray mt-1">First come, first served. Free entry for selected participants.</p>
+                    <p class="text-[13px] text-appleGray mt-1">First come, first served. Free for the first 200 students. Regular price ₹999.</p>
                 </div>
                 <div class="px-3 py-1.5 rounded-full apple-bento text-osNeon text-[11px] font-semibold tracking-tight flex items-center gap-1.5 flex-shrink-0">
                     <i class="fa-solid fa-user-check text-[10px]"></i>
@@ -681,6 +698,11 @@
                 <p class="text-appleGray text-sm mb-6 max-w-xs mx-auto leading-relaxed">
                     Your registration for <span class="text-white font-medium">Open Circle Workshop #1</span> is received. <span class="text-white font-medium">One last step:</span> join the participants' WhatsApp group. Venue, timing and all updates will be shared there.
                 </p>
+
+                <div class="max-w-xs mx-auto mb-5 px-4 py-3 rounded-2xl bg-osNeon/10 border border-osNeon/25 flex items-center gap-3 text-left" id="reporting-time">
+                    <i class="fa-regular fa-clock text-osNeon text-base"></i>
+                    <p class="text-[12px] text-white/90 leading-snug"><span class="font-semibold text-white">Reporting time: 9:30 AM.</span> Venue details will come on WhatsApp.</p>
+                </div>
 
                 <a href="#" target="_blank" rel="noopener noreferrer" id="join-whatsapp-group" class="apple-btn-primary w-full max-w-xs mx-auto py-4 rounded-2xl text-[15px] font-semibold tracking-[-0.01em] flex items-center justify-center gap-2 mb-6">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
@@ -946,6 +968,10 @@
         }
 
         function showRegistrationClosed() {
+            if (!document.getElementById('closedState')) {
+                const template = document.getElementById('closedTemplate');
+                document.querySelector('main').before(template.content.cloneNode(true));
+            }
             document.body.classList.add('registration-closed');
             document.title = 'Registrations Closed | Open Circle by OpenSkooll';
             window.scrollTo(0, 0);
@@ -1168,6 +1194,11 @@
 
         // ========== Scroll Reveal Animation ==========
         function initScrollReveal() {
+            // Fallback: browsers without IntersectionObserver show every section immediately
+            if (!('IntersectionObserver' in window)) {
+                document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
+                return;
+            }
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
