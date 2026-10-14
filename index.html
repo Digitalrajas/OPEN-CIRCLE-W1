@@ -271,14 +271,20 @@
         body.registration-closed { padding-bottom: 1.25rem; }
 
         /* FAQ Accordion */
+        /* Vertical padding lives only on .open so a closed answer collapses to exactly 0px */
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease;
+            opacity: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease, opacity 0.25s ease;
         }
         .faq-answer.open {
-            max-height: 200px;
-            padding-top: 10px;
+            max-height: 320px;
+            opacity: 1;
+            padding-top: 2px;
+            padding-bottom: 16px;
         }
         .faq-chevron {
             transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
@@ -845,7 +851,7 @@
                         <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Is this workshop really free?</span>
                         <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
                     </button>
-                    <div class="faq-answer px-5 pb-4">
+                    <div class="faq-answer px-5">
                         <p class="text-[13px] text-appleGray leading-relaxed">Yes, 100% free. There are no hidden charges. This is a community initiative by OpenSkooll under Open Circle to help students learn and build with AI.</p>
                     </div>
                 </div>
@@ -855,7 +861,7 @@
                         <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Do I need any coding experience?</span>
                         <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
                     </button>
-                    <div class="faq-answer px-5 pb-4">
+                    <div class="faq-answer px-5">
                         <p class="text-[13px] text-appleGray leading-relaxed">No prior coding experience is needed. This workshop is designed for absolute beginners. We'll guide you from zero to building your first AI-powered project.</p>
                     </div>
                 </div>
@@ -865,7 +871,7 @@
                         <span class="text-[14px] font-semibold text-white tracking-tight pr-3">What if I don't have a laptop?</span>
                         <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
                     </button>
-                    <div class="faq-answer px-5 pb-4">
+                    <div class="faq-answer px-5">
                         <p class="text-[13px] text-appleGray leading-relaxed">No worries! Just select "No" in the registration form. We'll pair you with a partner who has a laptop so you can still participate in the hands-on activities.</p>
                     </div>
                 </div>
@@ -875,7 +881,7 @@
                         <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Where exactly is the venue?</span>
                         <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
                     </button>
-                    <div class="faq-answer px-5 pb-4">
+                    <div class="faq-answer px-5">
                         <p class="text-[13px] text-appleGray leading-relaxed">The exact venue and timing details will be shared on your WhatsApp after successful registration. The workshop will be held in Nashik.</p>
                     </div>
                 </div>
@@ -885,7 +891,7 @@
                         <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Will I get a certificate?</span>
                         <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
                     </button>
-                    <div class="faq-answer px-5 pb-4">
+                    <div class="faq-answer px-5">
                         <p class="text-[13px] text-appleGray leading-relaxed">Yes! All participants who complete the workshop and the hands-on project will receive a certificate of participation from OpenSkooll.</p>
                     </div>
                 </div>
