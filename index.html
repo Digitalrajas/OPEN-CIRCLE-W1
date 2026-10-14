@@ -538,17 +538,17 @@
                             <span class="text-[13px] font-semibold text-white tracking-tight">Live Registrations</span>
                         </div>
                         <div class="text-right">
-                            <span id="seats-left" class="text-osNeon font-bold text-xl tracking-tight transition-transform duration-300 inline-block">162</span>
+                            <span id="seats-left" class="text-osNeon font-bold text-xl tracking-tight transition-transform duration-300 inline-block">197</span>
                             <span class="text-xs text-appleGray"> of 200 registrations left</span>
                         </div>
                     </div>
                     <!-- Recessed Apple Progress Track -->
                     <div class="w-full h-2.5 apple-recessed rounded-full overflow-hidden p-[2px]">
-                        <div id="seat-bar" class="h-full bg-gradient-to-r from-[#45b80b] to-osNeon rounded-full transition-all duration-700" style="width: 19%"></div>
+                        <div id="seat-bar" class="h-full bg-gradient-to-r from-[#45b80b] to-osNeon rounded-full transition-all duration-700" style="width: 1.5%"></div>
                     </div>
                     <div class="flex justify-between items-center mt-2.5 text-[11px] text-appleGray">
                         <span>Students from Nashik colleges</span>
-                        <span id="claimed-count" class="font-mono text-white/90 font-semibold">38 registered</span>
+                        <span id="claimed-count" class="font-mono text-white/90 font-semibold">3 registered</span>
                     </div>
                 </div>
 
@@ -887,13 +887,9 @@
                     <span class="absolute inset-0 rounded-full bg-osNeon/20 animate-ping"></span>
                     <i class="fa-solid fa-stopwatch text-osNeon text-sm timer-icon-shake relative z-10"></i>
                 </div>
-                <div class="leading-tight truncate">
-                    <div class="flex items-center gap-1.5">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-osNeon">Closing Soon</span>
-                        <span class="text-white/25 text-[10px]">•</span>
-                        <span class="text-[11px] font-semibold text-white"><span id="floating-seats-left">162</span> spots left</span>
-                    </div>
-                    <p class="text-[11px] text-appleGray truncate">Registration ends when timer hits zero</p>
+                <div class="leading-tight min-w-0">
+                    <span id="floating-urgency-label" class="block text-[10px] font-bold uppercase tracking-wider text-osNeon transition-colors duration-300">Closing Soon</span>
+                    <span class="block text-[14px] font-semibold text-white tracking-tight whitespace-nowrap"><span id="floating-seats-left">197</span> spots left</span>
                 </div>
             </div>
 
@@ -990,40 +986,38 @@
         initCountdown();
 
         // ========== Scheduled Registration Counter (Out of 200 Spots) ==========
-        // Count follows a fixed time-based schedule, so every visitor sees the same number at the same moment.
+        // Count follows a fixed timeline, so every visitor sees the same number at the same moment.
+        // Each entry is [IST time, registered]; values in between are interpolated linearly.
         const totalSeats = 200;
-        const SCHEDULE_START_COUNT = 38;   // registered at countdown start (15 Oct 00:00 IST)
-        const SCHEDULE_END_COUNT = 186;    // registered at deadline (17 Oct 24:00 IST)
-        const HOUR_MS = 60 * 60 * 1000;
-
-        // Relative sign-up activity by IST hour of day: quiet overnight, busiest in the evening
-        function hourlyActivity(hourIndex) {
-            const istHour = (hourIndex % 24 + 24) % 24; // schedule starts at 00:00 IST
-            const day = Math.floor(hourIndex / 24);
-            let weight;
-            if (istHour < 7) weight = 0.12;
-            else if (istHour < 12) weight = 0.8;
-            else if (istHour < 17) weight = 1.0;
-            else if (istHour < 23) weight = 1.45;
-            else weight = 0.5;
-            // Final-day rush
-            return weight * [1.0, 1.1, 1.55][Math.min(day, 2)];
-        }
+        const REGISTRATION_SCHEDULE = [
+            ['2026-10-15T09:00:00+05:30', 3],    // launch
+            ['2026-10-15T12:00:00+05:30', 48],   // morning rush
+            ['2026-10-15T16:00:00+05:30', 70],
+            ['2026-10-15T21:00:00+05:30', 96],   // evening
+            ['2026-10-16T01:00:00+05:30', 104],  // quiet overnight
+            ['2026-10-16T07:00:00+05:30', 112],
+            ['2026-10-16T10:00:00+05:30', 132],  // next morning
+            ['2026-10-16T15:00:00+05:30', 180],  // afternoon
+            ['2026-10-16T20:00:00+05:30', 188],  // 12 spots left
+            ['2026-10-17T09:00:00+05:30', 189],
+            ['2026-10-17T18:00:00+05:30', 191],
+            ['2026-10-18T00:00:00+05:30', 192]   // 8 spots left at deadline
+        ].map(([time, count]) => [new Date(time).getTime(), count]);
 
         function scheduledRegistrations(now) {
-            const totalHours = Math.round((deadlineTimestamp - countdownStartTimestamp) / HOUR_MS);
-            const elapsedHours = Math.min(Math.max((now - countdownStartTimestamp) / HOUR_MS, 0), totalHours);
+            const first = REGISTRATION_SCHEDULE[0];
+            const last = REGISTRATION_SCHEDULE[REGISTRATION_SCHEDULE.length - 1];
+            if (now <= first[0]) return first[1];
+            if (now >= last[0]) return last[1];
 
-            let totalWeight = 0;
-            let elapsedWeight = 0;
-            for (let h = 0; h < totalHours; h++) {
-                const w = hourlyActivity(h);
-                totalWeight += w;
-                if (h + 1 <= elapsedHours) elapsedWeight += w;
-                else if (h < elapsedHours) elapsedWeight += w * (elapsedHours - h);
+            for (let i = 1; i < REGISTRATION_SCHEDULE.length; i++) {
+                const [t1, c1] = REGISTRATION_SCHEDULE[i];
+                if (now < t1) {
+                    const [t0, c0] = REGISTRATION_SCHEDULE[i - 1];
+                    return c0 + Math.floor((c1 - c0) * (now - t0) / (t1 - t0));
+                }
             }
-
-            return SCHEDULE_START_COUNT + Math.floor((SCHEDULE_END_COUNT - SCHEDULE_START_COUNT) * (elapsedWeight / totalWeight));
+            return last[1];
         }
 
         // Bumped locally after this visitor registers so they see their own sign-up counted
@@ -1043,6 +1037,15 @@
             if (floatingSeatsDisplay) floatingSeatsDisplay.innerText = availableSeats;
             if (claimedDisplay) claimedDisplay.innerText = `${registered} registered`;
             if (seatBar) seatBar.style.width = `${percentage}%`;
+
+            // Bottom bar escalates to Apple system orange once spots run low
+            const urgencyLabel = document.getElementById('floating-urgency-label');
+            if (urgencyLabel) {
+                const almostFull = availableSeats <= 20;
+                urgencyLabel.textContent = almostFull ? 'Almost Full' : 'Closing Soon';
+                urgencyLabel.classList.toggle('text-osNeon', !almostFull);
+                urgencyLabel.classList.toggle('text-[#FF9F0A]', almostFull);
+            }
 
             // Subtle Apple-style scale pulse on registration change
             if (seatsDisplay) {
