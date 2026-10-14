@@ -579,6 +579,12 @@
             </div>
 
             <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-4">
+
+                <!-- Honeypot: hidden from people, filled in by bots; the backend drops those submissions -->
+                <div class="absolute -left-[9999px] w-px h-px overflow-hidden" aria-hidden="true">
+                    <label for="website">Website</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+                </div>
                 
                 <div>
                     <label for="fullName" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Full Name</label>
@@ -588,7 +594,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                     <div>
                         <label for="whatsapp" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">WhatsApp Number</label>
-                        <input type="tel" id="whatsapp" name="whatsapp" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="+91 98765 43210" autocomplete="tel">
+                        <input type="tel" id="whatsapp" name="whatsapp" required inputmode="tel" maxlength="16" class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="+91 98765 43210" autocomplete="tel">
                     </div>
                     <div>
                         <label for="email" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Email Address</label>
@@ -659,12 +665,12 @@
                 <div class="w-14 h-14 apple-icon-box rounded-2xl flex items-center justify-center mx-auto mb-4 border-osNeon/40">
                     <i class="fa-solid fa-check text-xl text-osNeon"></i>
                 </div>
-                <h3 class="text-2xl font-bold tracking-[-0.02em] text-white mb-1.5">Registration Successful!</h3>
+                <h3 id="successTitle" class="text-2xl font-bold tracking-[-0.02em] text-white mb-1.5">Registration Successful!</h3>
                 <p class="text-appleGray text-sm mb-6 max-w-xs mx-auto leading-relaxed">
                     Your registration for <span class="text-white font-medium">Open Circle Workshop #1</span> is received. <span class="text-white font-medium">One last step:</span> join the participants' WhatsApp group. Venue, timing and all updates will be shared there.
                 </p>
 
-                <a href="https://chat.whatsapp.com/IPeYLX67rzzA3shVftx7ri" target="_blank" rel="noopener noreferrer" id="join-whatsapp-group" class="apple-btn-primary w-full max-w-xs mx-auto py-4 rounded-2xl text-[15px] font-semibold tracking-[-0.01em] flex items-center justify-center gap-2 mb-6">
+                <a href="#" target="_blank" rel="noopener noreferrer" id="join-whatsapp-group" class="apple-btn-primary w-full max-w-xs mx-auto py-4 rounded-2xl text-[15px] font-semibold tracking-[-0.01em] flex items-center justify-center gap-2 mb-6">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     <span>Join WhatsApp Group</span>
                 </a>
@@ -1073,6 +1079,14 @@
         // Google Apps Script web app URL (see google-apps-script/Code.gs)
         const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzD5pllfusF335MudbTKC3QXf3EcAmv7M1kZnY5lzJdIE9PHIEySH68OXv1S5bY0A1M/exec';
 
+        const SUBMIT_ERROR_MESSAGES = {
+            invalid_name: 'Please enter your full name.',
+            invalid_phone: 'Please enter a valid 10-digit WhatsApp number.',
+            invalid_email: 'Please enter a valid email address.',
+            busy: 'Lots of registrations right now! Please try again in a minute.',
+            default: "Couldn't submit your registration. Please check your connection and try again."
+        };
+
         async function handleRegistration(event) {
             event.preventDefault();
 
@@ -1105,18 +1119,34 @@
                     showRegistrationClosed();
                     return;
                 }
-                if (!result.ok) throw new Error(result.error || 'submit_failed');
+                if (!result.ok) {
+                    showFormError(SUBMIT_ERROR_MESSAGES[result.error] || SUBMIT_ERROR_MESSAGES.default);
+                    return;
+                }
+
+                // Group invite link is only handed out by the backend after a valid registration
+                const groupBtn = document.getElementById('join-whatsapp-group');
+                if (result.groupLink) groupBtn.href = result.groupLink;
+                else groupBtn.classList.add('hidden');
+
+                if (result.duplicate) {
+                    document.getElementById('successTitle').textContent = "You're already registered!";
+                }
 
                 form.classList.add('hidden');
                 success.classList.remove('hidden');
 
-                if (availableSeats > 1) {
+                if (!result.duplicate && availableSeats > 1) {
                     ownRegistration = 1;
                     availableSeats -= 1;
                     updateSeatUI();
                 }
             } catch (err) {
-                errorEl.textContent = "Couldn't submit your registration. Please check your connection and try again.";
+                showFormError(SUBMIT_ERROR_MESSAGES.default);
+            }
+
+            function showFormError(message) {
+                errorEl.textContent = message;
                 errorEl.classList.remove('hidden');
                 btn.innerHTML = originalBtnHTML;
                 btn.disabled = false;
