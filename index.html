@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 101 Workshop | Open Circle by OpenSkooll — Nashik</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Join Open Circle Workshop #1 — AI 101: Learn & Build with AI. A free, hands-on, offline workshop in Nashik by OpenSkooll. Only 200 spots available. Register now!">
+    <meta name="keywords" content="AI workshop, artificial intelligence, Nashik, OpenSkooll, Open Circle, free workshop, learn AI, build with AI, hands-on AI">
+    <meta name="author" content="OpenSkooll">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AI 101 Workshop | Open Circle by OpenSkooll">
+    <meta property="og:description" content="A practical offline workshop in Nashik to understand how AI works, learn the right tools, and build something real. Only 200 spots — Register free!">
+    <meta property="og:url" content="https://digitalrajas.github.io/OPEN-CIRCLE-W1/">
+    <meta property="og:site_name" content="OpenSkooll">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI 101 Workshop | Open Circle by OpenSkooll">
+    <meta name="twitter:description" content="Free hands-on AI workshop in Nashik. Learn, build, and explore AI with industry mentors. Only 200 spots!">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2318181B' stroke='%235CE614' stroke-width='4'/><text x='50' y='62' text-anchor='middle' fill='%235CE614' font-size='36' font-weight='bold'>OC</text></svg>">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter as web fallback alongside Apple's native SF Pro system stack -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'],
+                        mono: ['"SF Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+                    },
+                    colors: {
+                        appleBlack: '#000000',
+                        appleElevated: '#151517',
+                        appleSecondary: '#1C1C1E',
+                        appleTertiary: '#2C2C2E',
+                        appleGray: '#86868B',
+                        appleLightGray: '#F5F5F7',
+                        osNeon: '#5CE614',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #F5F5F7;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Rich Apple Pro Titanium Glass Card */
+        .apple-glass {
+            background: linear-gradient(180deg, rgba(32, 32, 35, 0.85) 0%, rgba(18, 18, 20, 0.92) 100%);
+            backdrop-filter: saturate(190%) blur(40px);
+            -webkit-backdrop-filter: saturate(190%) blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 
+                0 32px 64px -16px rgba(0, 0, 0, 0.9),
+                0 12px 24px -8px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.16),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        }
+
+        /* Floating iOS Dynamic Island Pill Bar */
+        .apple-nav-pill {
+            background: rgba(24, 24, 27, 0.78);
+            backdrop-filter: saturate(200%) blur(32px);
+            -webkit-backdrop-filter: saturate(200%) blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 16px 36px -8px rgba(0, 0, 0, 0.85),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+        }
+
+        /* Dimensional Apple Bento Widget Surface */
+        .apple-bento {
+            background: linear-gradient(180deg, rgba(40, 40, 44, 0.6) 0%, rgba(24, 24, 27, 0.75) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow: 
+                0 10px 24px -6px rgba(0, 0, 0, 0.65),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease;
+        }
+        .apple-bento:hover {
+            border-color: rgba(255, 255, 255, 0.14);
+        }
+
+        /* Recessed Apple Well (Used for Counters & Inner Tracks) */
+        .apple-recessed {
+            background: #0C0C0E;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 
+                inset 0 2px 6px rgba(0, 0, 0, 0.85),
+                0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        /* Apple Squircle Icon Container */
+        .apple-icon-box {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 4px 10px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.14);
+        }
+
+        /* Rich macOS / iOS Settings Style Form Inputs */
+        .apple-input {
+            background: linear-gradient(180deg, #121214 0%, #161618 100%);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            color: #F5F5F7;
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 
+                inset 0 2px 4px rgba(0, 0, 0, 0.6),
+                0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+        .apple-input::placeholder {
+            color: #6E6E73;
+        }
+        .apple-input:hover {
+            background: #1A1A1D;
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+        .apple-input:focus {
+            outline: none;
+            background: #1D1D20;
+            border-color: #5CE614;
+            box-shadow: 
+                0 0 0 3.5px rgba(92, 230, 20, 0.2),
+                inset 0 1px 2px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Apple Hardware Configuration Style Radio Cards */
+        .apple-radio-card {
+            background: linear-gradient(180deg, rgba(38, 38, 42, 0.55) 0%, rgba(22, 22, 25, 0.75) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 
+                0 6px 16px -4px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.09);
+            transition: all 0.22s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .apple-radio:hover .apple-radio-card {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+        .apple-radio input:checked + .apple-radio-card {
+            border-color: #5CE614;
+            background: linear-gradient(180deg, rgba(92, 230, 20, 0.13) 0%, rgba(92, 230, 20, 0.04) 100%);
+            box-shadow: 
+                0 0 0 1px #5CE614,
+                0 10px 24px -6px rgba(92, 230, 20, 0.18),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+        }
+        .apple-radio input:checked + .apple-radio-card .check-ring {
+            background-color: #5CE614;
+            border-color: #5CE614;
+            box-shadow: 0 2px 8px rgba(92, 230, 20, 0.4);
+        }
+        .apple-radio input:checked + .apple-radio-card .check-ring i {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Primary Tactile Apple Gloss Button */
+        .apple-btn-primary {
+            background: linear-gradient(180deg, #72F72A 0%, #5CE614 55%, #49C30A 100%);
+            color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 
+                0 12px 28px -6px rgba(92, 230, 20, 0.4),
+                0 2px 6px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.65);
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .apple-btn-primary:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.04);
+            box-shadow: 
+                0 16px 34px -6px rgba(92, 230, 20, 0.52),
+                0 4px 10px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.75);
+        }
+        .apple-btn-primary:active {
+            transform: translateY(0px) scale(0.988);
+        }
+
+        /* Metallic Titanium Text Finish */
+        .apple-title-gradient {
+            background: linear-gradient(180deg, #FFFFFF 20%, #A1A1A6 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* FOMO Floating Persistent Timer Bar */
+        .apple-floating-timer {
+            background: rgba(18, 18, 20, 0.88);
+            backdrop-filter: saturate(200%) blur(32px);
+            -webkit-backdrop-filter: saturate(200%) blur(32px);
+            border: 1px solid rgba(92, 230, 20, 0.35);
+            box-shadow: 
+                0 20px 50px -10px rgba(0, 0, 0, 0.95),
+                0 0 25px -4px rgba(92, 230, 20, 0.22),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+        }
+
+        @keyframes urgent-ring {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            15% { transform: rotate(-14deg) scale(1.12); }
+            30% { transform: rotate(14deg) scale(1.12); }
+            45% { transform: rotate(-10deg) scale(1.08); }
+            60% { transform: rotate(10deg) scale(1.08); }
+            75% { transform: rotate(0deg) scale(1); }
+        }
+        .timer-icon-shake {
+            animation: urgent-ring 2.2s infinite ease-in-out;
+        }
+
+        /* Scroll Reveal Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+        }
+        .reveal.revealed {
+            animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* Stagger delay classes */
+        .delay-1 { animation-delay: 0.08s; }
+        .delay-2 { animation-delay: 0.16s; }
+        .delay-3 { animation-delay: 0.24s; }
+        .delay-4 { animation-delay: 0.32s; }
+
+        /* FAQ Accordion */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease;
+        }
+        .faq-answer.open {
+            max-height: 200px;
+            padding-top: 10px;
+        }
+        .faq-chevron {
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .faq-chevron.open {
+            transform: rotate(180deg);
+        }
+
+        /* Curriculum step line connector */
+        .step-connector {
+            position: absolute;
+            left: 17px;
+            top: 40px;
+            bottom: -12px;
+            width: 1.5px;
+            background: linear-gradient(180deg, rgba(92, 230, 20, 0.5) 0%, rgba(92, 230, 20, 0.08) 100%);
+        }
+
+        /* Custom Apple Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2C2C2E; 
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #86868B; 
+        }
+
+        /* Ambient glow behind hero */
+        .ambient-glow {
+            position: fixed;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, rgba(92, 230, 20, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationEvent",
+        "name": "AI 101: Learn & Build with AI — Open Circle Workshop #1",
+        "description": "A practical offline workshop in Nashik to understand how AI works, learn the right tools, and build something real.",
+        "organizer": {
+            "@type": "Organization",
+            "name": "OpenSkooll",
+            "url": "https://openskooll.com"
+        },
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "Nashik, Maharashtra, India"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/LimitedAvailability"
+        },
+        "maximumAttendeeCapacity": 200,
+        "isAccessibleForFree": true
+    }
+    </script>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between pt-5 pb-28 px-4 relative overflow-x-hidden selection:bg-osNeon selection:text-black">
+
+    <!-- Ambient Background Glow -->
+    <div class="ambient-glow"></div>
+
+    <!-- Floating Apple Dynamic-Island Style Glass Navbar -->
+    <nav class="sticky top-4 z-50 w-full max-w-[540px] mb-8" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="apple-nav-pill rounded-full pl-4 pr-2.5 py-2 flex items-center justify-between">
+            <!-- Exact OpenSkooll Logo -->
+            <a href="#" class="flex items-center gap-2.5 focus:outline-none group" aria-label="OpenSkooll Home">
+                <svg class="w-7 h-7 transition-transform duration-300 group-hover:scale-105" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <g transform="translate(52, 48)">
+                        <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(-62)" />
+                        <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(-17)" />
+                        <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(28)" />
+                        <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(73)" />
+                        <rect x="-6.5" y="-38" width="13" height="26" fill="white" transform="rotate(118)" />
+                    </g>
+                    <circle cx="52" cy="48" r="16" fill="#18181B" />
+                    <g>
+                        <path d="M29 82 L47 50" stroke="#5CE614" stroke-width="13.5" stroke-linecap="butt" />
+                        <path d="M16 58 L47.5 50.5 L55 82" stroke="#5CE614" stroke-width="13.5" stroke-linecap="butt" stroke-linejoin="miter" fill="none" />
+                    </g>
+                </svg>
+                <div class="text-[18px] tracking-[-0.03em] leading-none text-white">
+                    <span class="font-light text-white/90">Open</span><span class="font-bold">Skooll</span>
+                </div>
+            </a>
+
+            <!-- Right Status Pill -->
+            <div class="flex items-center gap-2">
+                <!-- Live Top Mini Timer Badge -->
+                <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-osNeon/10 border border-osNeon/25 text-[11px] font-mono font-semibold text-osNeon">
+                    <i class="fa-solid fa-stopwatch text-[10px] timer-icon-shake"></i>
+                    <span class="js-timer-compact">47:59:42</span>
+                </div>
+                <a href="#register" id="nav-register-btn" class="px-3.5 py-1.5 rounded-full bg-white/[0.08] hover:bg-white/[0.14] border border-white/[0.12] shadow-inner text-[11px] font-semibold text-white tracking-tight transition-all flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-osNeon animate-pulse"></span>
+                    <span>Registration Open</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="w-full max-w-[540px] z-10">
+        
+        <!-- 1:1 Square Apple Keynote Display Frame -->
+        <div class="w-full aspect-square apple-glass rounded-[36px] p-2 mb-10 reveal" id="hero-banner">
+            <div class="w-full h-full apple-recessed rounded-[28px] p-6 md:p-8 flex flex-col items-center justify-between relative overflow-hidden">
+                <!-- Precision Dot Matrix Texture -->
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:22px_22px] opacity-60 pointer-events-none"></div>
+                
+                <!-- Top Row Inside Graphic -->
+                <div class="w-full flex justify-between items-center z-10">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 apple-bento rounded-full text-[11px] font-medium text-white/90 tracking-tight">
+                        <span class="w-1.5 h-1.5 rounded-full bg-osNeon"></span>
+                        <span>Offline Workshop</span>
+                    </div>
+                    <span class="text-[11px] font-mono text-appleGray apple-bento px-3 py-1.5 rounded-full tracking-tight">
+                        WORKSHOP #01
+                    </span>
+                </div>
+
+                <!-- Centerpiece Graphic: Open Circle Orbital Vector + Typography -->
+                <div class="my-auto flex flex-col items-center text-center z-10 px-2">
+                    <!-- Open Circle Orbital Emblem -->
+                    <div class="relative py-3 px-6 mb-3 flex items-center justify-center">
+                        <svg class="w-60 md:w-72 h-28 overflow-visible" viewBox="0 0 300 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <!-- Top Orbit Arc -->
+                            <path d="M 65 35 C 110 -5, 255 -5, 245 42" stroke="url(#appleArcTop)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                            <!-- Bottom Orbit Arc -->
+                            <path d="M 55 72 C 50 112, 165 108, 210 75" stroke="url(#appleArcBottom)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+                            <!-- Glowing Green Node -->
+                            <circle cx="245" cy="43" r="4" fill="#5CE614" />
+                            <circle cx="245" cy="43" r="9" fill="#5CE614" opacity="0.25" />
+                            <!-- OPEN CIRCLE Typography -->
+                            <text x="150" y="63" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Inter, sans-serif" font-size="29" font-weight="300" letter-spacing="6.5">OPEN CIRCLE</text>
+                            <defs>
+                                <linearGradient id="appleArcTop" x1="65" y1="35" x2="245" y2="42" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="white" stop-opacity="0.15"/>
+                                    <stop offset="60%" stop-color="white" stop-opacity="0.85"/>
+                                    <stop offset="100%" stop-color="#5CE614" stop-opacity="1"/>
+                                </linearGradient>
+                                <linearGradient id="appleArcBottom" x1="55" y1="72" x2="210" y2="75" gradientUnits="userSpaceOnUse">
+                                    <stop offset="0%" stop-color="white" stop-opacity="0.85"/>
+                                    <stop offset="100%" stop-color="white" stop-opacity="0.15"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <span class="inline-block px-2.5 py-0.5 rounded-md bg-osNeon/10 border border-osNeon/20 text-[10px] font-semibold uppercase tracking-[0.16em] text-osNeon mb-2.5">
+                        1:1 Visual Banner Slot
+                    </span>
+                    <h2 class="text-2xl md:text-[32px] font-bold apple-title-gradient tracking-[-0.03em] leading-tight">
+                        AI 101: Learn &amp; Build with AI
+                    </h2>
+                    <p class="text-xs text-appleGray mt-1.5 font-medium tracking-tight">
+                        Open Circle by OpenSkooll
+                    </p>
+                </div>
+
+                <!-- Bottom Bar Inside Graphic -->
+                <div class="w-full pt-4 border-t border-white/[0.07] flex items-center justify-between text-xs z-10">
+                    <span class="flex items-center gap-1.5 text-white/90 font-medium tracking-tight">
+                        <i class="fa-solid fa-location-dot text-osNeon text-[11px]"></i> Nashik
+                    </span>
+                    <span class="text-appleGray font-medium tracking-tight">Only 200 Registrations</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Apple-Style Editorial Hero Section -->
+        <div class="text-center mb-10 px-2 reveal" id="hero-text">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-bento text-white/90 text-[11px] font-semibold tracking-tight mb-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-osNeon"></span>
+                <span>Workshop #1</span>
+                <span class="text-white/30">•</span>
+                <span class="text-appleGray">Open Circle by OpenSkooll</span>
+            </div>
+
+            <h1 class="text-[34px] md:text-[44px] font-bold mb-3.5 leading-[1.08] tracking-[-0.035em] text-white">
+                Understand AI. <br>
+                <span class="apple-title-gradient">Start building with it.</span>
+            </h1>
+            <p class="text-appleGray text-[15px] md:text-[16px] leading-[1.55] max-w-[440px] mx-auto mb-7 font-normal tracking-[-0.01em]">
+                A practical offline workshop in Nashik to understand how AI works, learn the right tools, and build something real.
+            </p>
+            
+            <!-- 3 Rich Apple Bento Spec Cards -->
+            <div class="grid grid-cols-3 gap-3">
+                <div class="p-3.5 apple-bento rounded-[22px] flex flex-col items-center justify-center text-center" id="spec-duration">
+                    <div class="w-8 h-8 rounded-xl apple-icon-box flex items-center justify-center mb-2">
+                        <i class="fa-regular fa-clock text-osNeon text-xs"></i>
+                    </div>
+                    <span class="text-[13px] font-semibold text-white tracking-tight">3 Hours</span>
+                    <span class="text-[11px] text-appleGray mt-0.5">Full Workshop</span>
+                </div>
+                <div class="p-3.5 apple-bento rounded-[22px] flex flex-col items-center justify-center text-center" id="spec-shifts">
+                    <div class="w-8 h-8 rounded-xl apple-icon-box flex items-center justify-center mb-2">
+                        <i class="fa-solid fa-layer-group text-osNeon text-xs"></i>
+                    </div>
+                    <span class="text-[13px] font-semibold text-white tracking-tight">3 Shifts</span>
+                    <span class="text-[11px] text-appleGray mt-0.5">Step-by-Step</span>
+                </div>
+                <div class="p-3.5 apple-bento rounded-[22px] flex flex-col items-center justify-center text-center" id="spec-practical">
+                    <div class="w-8 h-8 rounded-xl apple-icon-box flex items-center justify-center mb-2">
+                        <i class="fa-solid fa-laptop text-osNeon text-xs"></i>
+                    </div>
+                    <span class="text-[13px] font-semibold text-white tracking-tight">Practical</span>
+                    <span class="text-[11px] text-appleGray mt-0.5">Live Practice</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====== NEW: What You'll Learn — Curriculum Section ====== -->
+        <section class="mb-10 reveal" id="curriculum">
+            <div class="text-center mb-6">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full apple-bento text-white/90 text-[11px] font-semibold tracking-tight mb-3">
+                    <i class="fa-solid fa-book-open text-osNeon text-[10px]"></i>
+                    <span>Workshop Curriculum</span>
+                </span>
+                <h2 class="text-[26px] md:text-[30px] font-bold text-white tracking-[-0.03em] leading-tight">
+                    What You'll <span class="apple-title-gradient">Learn</span>
+                </h2>
+            </div>
+
+            <div class="space-y-3.5">
+                <!-- Shift 1 -->
+                <div class="apple-bento rounded-[22px] p-5 relative reveal delay-1" id="shift-1">
+                    <div class="step-connector"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30">
+                            <span class="text-osNeon text-sm font-bold">01</span>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <h3 class="text-[15px] font-semibold text-white tracking-tight">Understand AI</h3>
+                                <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 1</span>
+                            </div>
+                            <p class="text-[13px] text-appleGray leading-relaxed">
+                                What is AI, really? Cut through the hype. Learn how large language models work, what they can (and can't) do, and why this matters for your career.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shift 2 -->
+                <div class="apple-bento rounded-[22px] p-5 relative reveal delay-2" id="shift-2">
+                    <div class="step-connector"></div>
+                    <div class="flex items-start gap-4">
+                        <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30">
+                            <span class="text-osNeon text-sm font-bold">02</span>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <h3 class="text-[15px] font-semibold text-white tracking-tight">Learn the Tools</h3>
+                                <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 2</span>
+                            </div>
+                            <p class="text-[13px] text-appleGray leading-relaxed">
+                                Hands-on with ChatGPT, Claude, Gemini, and more. Master prompt engineering, learn the workflows used by top professionals, and build your AI toolkit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shift 3 -->
+                <div class="apple-bento rounded-[22px] p-5 relative reveal delay-3" id="shift-3">
+                    <div class="flex items-start gap-4">
+                        <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30">
+                            <span class="text-osNeon text-sm font-bold">03</span>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-2 mb-1.5">
+                                <h3 class="text-[15px] font-semibold text-white tracking-tight">Build Something Real</h3>
+                                <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 3</span>
+                            </div>
+                            <p class="text-[13px] text-appleGray leading-relaxed">
+                                Put it all together. Build a real AI-powered project from scratch during the workshop. Walk out with something you can show off.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====== NEW: Who Is This For? Section ====== -->
+        <section class="mb-10 reveal" id="who-is-this-for">
+            <div class="apple-glass rounded-[28px] p-6">
+                <div class="flex items-center gap-3 mb-5">
+                    <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center">
+                        <i class="fa-solid fa-users text-osNeon text-sm"></i>
+                    </div>
+                    <h2 class="text-[20px] font-bold text-white tracking-[-0.02em]">Who Is This For?</h2>
+                </div>
+                <div class="grid grid-cols-1 gap-2.5">
+                    <div class="flex items-center gap-3 p-3 rounded-2xl apple-bento">
+                        <div class="w-7 h-7 rounded-lg bg-osNeon/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-graduation-cap text-osNeon text-[11px]"></i>
+                        </div>
+                        <span class="text-[13px] text-white/90 font-medium">College students curious about AI & its real-world applications</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-2xl apple-bento">
+                        <div class="w-7 h-7 rounded-lg bg-osNeon/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-code text-osNeon text-[11px]"></i>
+                        </div>
+                        <span class="text-[13px] text-white/90 font-medium">Beginners who want to start using AI tools the right way</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-2xl apple-bento">
+                        <div class="w-7 h-7 rounded-lg bg-osNeon/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-rocket text-osNeon text-[11px]"></i>
+                        </div>
+                        <span class="text-[13px] text-white/90 font-medium">Anyone who wants to build something real with AI — not just watch tutorials</span>
+                    </div>
+                    <div class="flex items-center gap-3 p-3 rounded-2xl apple-bento">
+                        <div class="w-7 h-7 rounded-lg bg-osNeon/10 flex items-center justify-center flex-shrink-0">
+                            <i class="fa-solid fa-lightbulb text-osNeon text-[11px]"></i>
+                        </div>
+                        <span class="text-[13px] text-white/90 font-medium">No coding experience needed — we'll guide you from zero to building</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Apple Pro Sheet Registration Card -->
+        <section id="register" class="apple-glass rounded-[36px] p-6 md:p-8 relative reveal" aria-label="Registration Form">
+            
+            <!-- Card Header -->
+            <div class="flex items-start justify-between gap-3 mb-6">
+                <div>
+                    <h3 class="text-[22px] font-bold text-white tracking-[-0.025em] leading-tight">Workshop Registration</h3>
+                    <p class="text-[13px] text-appleGray mt-1">First come, first served. Free entry for selected participants.</p>
+                </div>
+                <div class="px-3 py-1.5 rounded-full apple-bento text-osNeon text-[11px] font-semibold tracking-tight flex items-center gap-1.5 flex-shrink-0">
+                    <i class="fa-solid fa-user-check text-[10px]"></i>
+                    <span>Only 200 Spots</span>
+                </div>
+            </div>
+
+            <!-- Live Registrations + 48-Hour Countdown Widget -->
+            <div class="apple-bento rounded-[24px] p-4 md:p-5 mb-7 space-y-4">
+                <!-- Live Registrations Row -->
+                <div>
+                    <div class="flex justify-between items-baseline mb-2.5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-osNeon animate-pulse"></span>
+                            <span class="text-[13px] font-semibold text-white tracking-tight">Live Registrations</span>
+                        </div>
+                        <div class="text-right">
+                            <span id="seats-left" class="text-osNeon font-bold text-xl tracking-tight transition-transform duration-300 inline-block">29</span>
+                            <span class="text-xs text-appleGray"> of 200 registrations left</span>
+                        </div>
+                    </div>
+                    <!-- Recessed Apple Progress Track -->
+                    <div class="w-full h-2.5 apple-recessed rounded-full overflow-hidden p-[2px]">
+                        <div id="seat-bar" class="h-full bg-gradient-to-r from-[#45b80b] to-osNeon rounded-full transition-all duration-700" style="width: 85.5%"></div>
+                    </div>
+                    <div class="flex justify-between items-center mt-2.5 text-[11px] text-appleGray">
+                        <span>Students from Nashik colleges</span>
+                        <span id="claimed-count" class="font-mono text-white/90 font-semibold">171 registered</span>
+                    </div>
+                </div>
+
+                <!-- 48-Hour FOMO Countdown Bar -->
+                <div class="pt-3.5 border-t border-white/[0.08] flex items-center justify-between gap-2">
+                    <div class="flex items-center gap-2 text-xs text-white/90 font-medium">
+                        <div class="w-6 h-6 rounded-lg apple-icon-box flex items-center justify-center">
+                            <i class="fa-regular fa-hourglass-half text-osNeon text-[10px]"></i>
+                        </div>
+                        <span>Registration closes in:</span>
+                    </div>
+                    <div class="flex items-center gap-1.5 font-mono text-xs font-semibold">
+                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-white">
+                            <span id="timer-hours">47</span><span class="text-[10px] text-appleGray ml-0.5">h</span>
+                        </div>
+                        <span class="text-appleGray font-bold">:</span>
+                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-white">
+                            <span id="timer-minutes">59</span><span class="text-[10px] text-appleGray ml-0.5">m</span>
+                        </div>
+                        <span class="text-appleGray font-bold">:</span>
+                        <div class="apple-recessed px-2.5 py-1.5 rounded-xl text-osNeon border-osNeon/25">
+                            <span id="timer-seconds">42</span><span class="text-[10px] text-osNeon/70 ml-0.5">s</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="registrationForm" onsubmit="handleRegistration(event)" class="space-y-4">
+                
+                <div>
+                    <label for="fullName" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="Enter your full name" autocomplete="name">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <div>
+                        <label for="whatsapp" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">WhatsApp Number</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="+91 98765 43210" autocomplete="tel">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">Email Address</label>
+                        <input type="email" id="email" name="email" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="yourname@gmail.com" autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                    <div>
+                        <label for="college" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">College / University Name</label>
+                        <input type="text" id="college" name="college" required class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="e.g. KBTCOE, KK Wagh, BYK">
+                    </div>
+                    <div>
+                        <label for="city" class="block text-[12px] font-medium text-white/85 mb-1.5 ml-1 tracking-tight">City / Location</label>
+                        <input type="text" id="city" name="city" required value="Nashik" class="apple-input w-full px-4 py-3.5 rounded-2xl text-[14px]" placeholder="Nashik">
+                    </div>
+                </div>
+
+                <!-- Apple Hardware-Style Radio Selector for Laptop -->
+                <div class="pt-1.5">
+                    <div class="flex items-center justify-between mb-2 mx-1">
+                        <label class="text-[12px] font-medium text-white/85 tracking-tight">Will you bring a laptop?</label>
+                        <span class="text-[11px] text-osNeon font-medium">Required for practical</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="apple-radio cursor-pointer" id="laptop-yes-label">
+                            <input type="radio" name="laptop" value="yes" required class="sr-only" checked>
+                            <div class="apple-radio-card p-3.5 rounded-2xl flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[13px] font-semibold text-white tracking-tight">Yes, I will bring</span>
+                                    <span class="block text-[11px] text-appleGray mt-0.5">I have a laptop</span>
+                                </div>
+                                <span class="check-ring w-5 h-5 rounded-full border border-white/25 bg-black/40 flex items-center justify-center transition-all flex-shrink-0">
+                                    <i class="fa-solid fa-check text-[10px] text-black opacity-0 transform scale-50 transition-all"></i>
+                                </span>
+                            </div>
+                        </label>
+                        <label class="apple-radio cursor-pointer" id="laptop-no-label">
+                            <input type="radio" name="laptop" value="no" class="sr-only">
+                            <div class="apple-radio-card p-3.5 rounded-2xl flex items-center justify-between">
+                                <div>
+                                    <span class="block text-[13px] font-semibold text-white tracking-tight">No, I don't have</span>
+                                    <span class="block text-[11px] text-appleGray mt-0.5">Pair me with a partner</span>
+                                </div>
+                                <span class="check-ring w-5 h-5 rounded-full border border-white/25 bg-black/40 flex items-center justify-center transition-all flex-shrink-0">
+                                    <i class="fa-solid fa-check text-[10px] text-black opacity-0 transform scale-50 transition-all"></i>
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-2.5">
+                    <button type="submit" id="submitBtn" class="apple-btn-primary w-full py-4 rounded-2xl text-[15px] font-semibold tracking-[-0.01em] flex items-center justify-center gap-2">
+                        <span>Register Now</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <p class="text-center text-[11px] text-appleGray pt-1">
+                    Only 200 spots available. We will send your entry pass on WhatsApp.
+                </p>
+            </form>
+
+            <!-- Confirmation State -->
+            <div id="successState" class="hidden text-center py-6">
+                <div class="w-14 h-14 apple-icon-box rounded-2xl flex items-center justify-center mx-auto mb-4 border-osNeon/40">
+                    <i class="fa-solid fa-check text-xl text-osNeon"></i>
+                </div>
+                <h3 class="text-2xl font-bold tracking-[-0.02em] text-white mb-1.5">Registration Successful!</h3>
+                <p class="text-appleGray text-sm mb-6 max-w-xs mx-auto leading-relaxed">
+                    Your registration for <span class="text-white font-medium">Open Circle Workshop #1</span> is received. We will send the venue and timing details on your WhatsApp.
+                </p>
+                <div class="p-4 apple-bento rounded-2xl inline-flex items-center gap-3.5 text-left">
+                    <div class="w-2.5 h-2.5 rounded-full bg-osNeon animate-pulse"></div>
+                    <div>
+                        <p class="text-[10px] text-appleGray uppercase tracking-wider font-medium">Registration Status</p>
+                        <p class="text-white font-semibold text-xs tracking-tight">Confirmed • AI 101 Nashik</p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ====== NEW: FAQ Section ====== -->
+        <section class="mt-10 reveal" id="faq">
+            <div class="text-center mb-6">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full apple-bento text-white/90 text-[11px] font-semibold tracking-tight mb-3">
+                    <i class="fa-solid fa-circle-question text-osNeon text-[10px]"></i>
+                    <span>Got Questions?</span>
+                </span>
+                <h2 class="text-[26px] md:text-[30px] font-bold text-white tracking-[-0.03em] leading-tight">
+                    Frequently <span class="apple-title-gradient">Asked</span>
+                </h2>
+            </div>
+
+            <div class="space-y-2.5" id="faq-container">
+                <div class="apple-bento rounded-[18px] overflow-hidden faq-item">
+                    <button class="w-full px-5 py-4 flex items-center justify-between text-left faq-toggle" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Is this workshop really free?</span>
+                        <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-5 pb-4">
+                        <p class="text-[13px] text-appleGray leading-relaxed">Yes, 100% free. There are no hidden charges. This is a community initiative by OpenSkooll under Open Circle to help students learn and build with AI.</p>
+                    </div>
+                </div>
+
+                <div class="apple-bento rounded-[18px] overflow-hidden faq-item">
+                    <button class="w-full px-5 py-4 flex items-center justify-between text-left faq-toggle" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Do I need any coding experience?</span>
+                        <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-5 pb-4">
+                        <p class="text-[13px] text-appleGray leading-relaxed">No prior coding experience is needed. This workshop is designed for absolute beginners. We'll guide you from zero to building your first AI-powered project.</p>
+                    </div>
+                </div>
+
+                <div class="apple-bento rounded-[18px] overflow-hidden faq-item">
+                    <button class="w-full px-5 py-4 flex items-center justify-between text-left faq-toggle" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-[14px] font-semibold text-white tracking-tight pr-3">What if I don't have a laptop?</span>
+                        <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-5 pb-4">
+                        <p class="text-[13px] text-appleGray leading-relaxed">No worries! Just select "No" in the registration form. We'll pair you with a partner who has a laptop so you can still participate in the hands-on activities.</p>
+                    </div>
+                </div>
+
+                <div class="apple-bento rounded-[18px] overflow-hidden faq-item">
+                    <button class="w-full px-5 py-4 flex items-center justify-between text-left faq-toggle" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Where exactly is the venue?</span>
+                        <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-5 pb-4">
+                        <p class="text-[13px] text-appleGray leading-relaxed">The exact venue and timing details will be shared on your WhatsApp after successful registration. The workshop will be held in Nashik.</p>
+                    </div>
+                </div>
+
+                <div class="apple-bento rounded-[18px] overflow-hidden faq-item">
+                    <button class="w-full px-5 py-4 flex items-center justify-between text-left faq-toggle" onclick="toggleFaq(this)" aria-expanded="false">
+                        <span class="text-[14px] font-semibold text-white tracking-tight pr-3">Will I get a certificate?</span>
+                        <i class="fa-solid fa-chevron-down text-appleGray text-[11px] faq-chevron flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-5 pb-4">
+                        <p class="text-[13px] text-appleGray leading-relaxed">Yes! All participants who complete the workshop and the hands-on project will receive a certificate of participation from OpenSkooll.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Clean Apple-Style Contact & Footer Section -->
+        <footer class="mt-10 pt-8 border-t border-white/[0.08] text-center" role="contentinfo">
+            <p class="text-[12px] font-medium text-appleGray mb-4 tracking-tight">
+                Need help or have questions about the workshop?
+            </p>
+            
+            <!-- Contact Action Pills -->
+            <div class="flex flex-wrap items-center justify-center gap-2.5 mb-7">
+                <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full apple-bento hover:bg-white/[0.08] text-xs font-medium text-white/90 transition-all" id="footer-whatsapp">
+                    <i class="fa-brands fa-whatsapp text-osNeon text-sm"></i>
+                    <span>WhatsApp Support</span>
+                </a>
+                <a href="mailto:hello@openskooll.com" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full apple-bento hover:bg-white/[0.08] text-xs font-medium text-white/90 transition-all" id="footer-email">
+                    <i class="fa-regular fa-envelope text-osNeon text-sm"></i>
+                    <span>hello@openskooll.com</span>
+                </a>
+                <a href="https://instagram.com/openskooll" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full apple-bento hover:bg-white/[0.08] text-xs font-medium text-white/90 transition-all" id="footer-instagram">
+                    <i class="fa-brands fa-instagram text-osNeon text-sm"></i>
+                    <span>@openskooll</span>
+                </a>
+            </div>
+
+            <!-- Bottom Brand Attribution -->
+            <div class="flex flex-col items-center gap-1 text-[11px] text-appleGray">
+                <p>An initiative under <span class="text-white/85 font-medium">Open Circle</span> by <span class="text-white font-semibold">OpenSkooll</span>.</p>
+                <p>Copyright &copy; 2026 OpenSkooll. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Persistent Floating Bottom FOMO Timer Bar (Follows User Everywhere on Screen) -->
+    <div class="fixed bottom-4 inset-x-0 z-50 px-3.5 pointer-events-none flex justify-center" id="floating-timer-bar">
+        <div class="apple-floating-timer pointer-events-auto w-full max-w-[520px] rounded-full p-2 pl-3 sm:pl-4 flex items-center justify-between gap-2 transition-all duration-300">
+            
+            <!-- Left: Animated Timer Icon + Urgent Copy -->
+            <div class="flex items-center gap-2.5 min-w-0">
+                <div class="w-9 h-9 rounded-full bg-osNeon/15 border border-osNeon/40 flex items-center justify-center flex-shrink-0 relative">
+                    <span class="absolute inset-0 rounded-full bg-osNeon/20 animate-ping"></span>
+                    <i class="fa-solid fa-stopwatch text-osNeon text-sm timer-icon-shake relative z-10"></i>
+                </div>
+                <div class="leading-tight truncate">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-osNeon">Closing Soon</span>
+                        <span class="text-white/25 text-[10px]">•</span>
+                        <span class="text-[11px] font-semibold text-white"><span id="floating-seats-left">29</span> spots left</span>
+                    </div>
+                    <p class="text-[11px] text-appleGray truncate">Registration ends when timer hits zero</p>
+                </div>
+            </div>
+
+            <!-- Right: High-Visibility Ticking Clock + Quick Jump CTA -->
+            <div class="flex items-center gap-2 flex-shrink-0">
+                <div class="apple-recessed px-3 py-1.5 rounded-full border border-osNeon/30 flex items-center gap-1 font-mono text-xs sm:text-sm font-bold text-white shadow-inner">
+                    <span id="float-hours" class="text-white">47</span><span class="text-[10px] text-appleGray font-normal">h</span>
+                    <span class="text-osNeon animate-pulse">:</span>
+                    <span id="float-minutes" class="text-white">59</span><span class="text-[10px] text-appleGray font-normal">m</span>
+                    <span class="text-osNeon animate-pulse">:</span>
+                    <span id="float-seconds" class="text-osNeon">42</span><span class="text-[10px] text-osNeon/80 font-normal">s</span>
+                </div>
+
+                <a href="#register" class="apple-btn-primary px-3.5 py-2 rounded-full text-xs font-bold tracking-tight flex items-center gap-1 flex-shrink-0" id="floating-register-btn">
+                    <span class="hidden xs:inline">Register</span>
+                    <i class="fa-solid fa-arrow-up text-[10px]"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // ========== Configurable Countdown Duration ==========
+        const COUNTDOWN_HOURS = 48;
+        let deadlineTimestamp = new Date().getTime() + (COUNTDOWN_HOURS * 60 * 60 * 1000) - (18 * 1000);
+
+        function initCountdown() {
+            const hoursEl = document.getElementById('timer-hours');
+            const minutesEl = document.getElementById('timer-minutes');
+            const secondsEl = document.getElementById('timer-seconds');
+
+            const floatHoursEl = document.getElementById('float-hours');
+            const floatMinutesEl = document.getElementById('float-minutes');
+            const floatSecondsEl = document.getElementById('float-seconds');
+            const compactTimers = document.querySelectorAll('.js-timer-compact');
+
+            function updateTimer() {
+                const currentTime = new Date().getTime();
+                let diff = Math.max(0, deadlineTimestamp - currentTime);
+
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                diff -= hours * (1000 * 60 * 60);
+                const minutes = Math.floor(diff / (1000 * 60));
+                diff -= minutes * (1000 * 60);
+                const seconds = Math.floor(diff / 1000);
+
+                const hStr = String(hours).padStart(2, '0');
+                const mStr = String(minutes).padStart(2, '0');
+                const sStr = String(seconds).padStart(2, '0');
+
+                // Update main form timer
+                if (hoursEl) hoursEl.innerText = hStr;
+                if (minutesEl) minutesEl.innerText = mStr;
+                if (secondsEl) secondsEl.innerText = sStr;
+
+                // Update persistent floating bottom timer
+                if (floatHoursEl) floatHoursEl.innerText = hStr;
+                if (floatMinutesEl) floatMinutesEl.innerText = mStr;
+                if (floatSecondsEl) floatSecondsEl.innerText = sStr;
+
+                // Update navbar compact timer
+                compactTimers.forEach(el => {
+                    el.innerText = `${hStr}:${mStr}:${sStr}`;
+                });
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        initCountdown();
+
+        // ========== Realistic FOMO Registration Counter Logic (Out of 200 Spots) ==========
+        const totalSeats = 200;
+        let availableSeats = 29;
+        
+        const seatsDisplay = document.getElementById('seats-left');
+        const floatingSeatsDisplay = document.getElementById('floating-seats-left');
+        const claimedDisplay = document.getElementById('claimed-count');
+        const seatBar = document.getElementById('seat-bar');
+
+        function updateSeatUI() {
+            const registered = totalSeats - availableSeats;
+            const percentage = ((registered / totalSeats) * 100).toFixed(1);
+            
+            if (seatsDisplay) seatsDisplay.innerText = availableSeats;
+            if (floatingSeatsDisplay) floatingSeatsDisplay.innerText = availableSeats;
+            if (claimedDisplay) claimedDisplay.innerText = `${registered} registered`;
+            if (seatBar) seatBar.style.width = `${percentage}%`;
+
+            // Subtle Apple-style scale pulse on registration change
+            if (seatsDisplay) {
+                seatsDisplay.classList.add('text-white', 'scale-110');
+                setTimeout(() => {
+                    seatsDisplay.classList.remove('text-white', 'scale-110');
+                }, 300);
+            }
+        }
+
+        // Slowly decrement remaining registrations at natural intervals
+        setInterval(() => {
+            if (availableSeats > 7 && Math.random() > 0.55) { 
+                availableSeats -= 1;
+                updateSeatUI();
+            }
+        }, 9500);
+
+        // ========== Form Submission Handler ==========
+        function handleRegistration(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const form = document.getElementById('registrationForm');
+            const success = document.getElementById('successState');
+            
+            // Loading UI
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-xs"></i> <span>Submitting Registration...</span>';
+            btn.disabled = true;
+            btn.classList.add('opacity-80');
+
+            // Simulate Registration Confirmation
+            setTimeout(() => {
+                form.classList.add('hidden');
+                success.classList.remove('hidden');
+                
+                if (availableSeats > 1) {
+                    availableSeats -= 1;
+                    updateSeatUI();
+                }
+            }, 900);
+        }
+
+        // ========== Scroll Reveal Animation ==========
+        function initScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // ========== FAQ Toggle ==========
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const chevron = button.querySelector('.faq-chevron');
+            const isOpen = answer.classList.contains('open');
+
+            // Close all other FAQs
+            document.querySelectorAll('.faq-answer.open').forEach(a => {
+                a.classList.remove('open');
+                a.previousElementSibling.querySelector('.faq-chevron').classList.remove('open');
+                a.previousElementSibling.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                answer.classList.add('open');
+                chevron.classList.add('open');
+                button.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        // Initialize on DOM Ready
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollReveal();
+        });
+    </script>
+</body>
+</html>
