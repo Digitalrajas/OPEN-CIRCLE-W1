@@ -287,14 +287,33 @@
             transform: rotate(180deg);
         }
 
-        /* Curriculum step line connector */
+        /* Curriculum: iOS-style grouped list with a timeline rail through the step badges */
+        .step-row {
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+        }
+        /* Inset hairline divider, aligned to the text column like iOS lists */
+        .step-row + .step-row::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 72px;
+            right: 20px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+        /* Rail runs from below this badge to just above the next badge, centred on the 36px badge */
         .step-connector {
             position: absolute;
-            left: 17px;
-            top: 40px;
-            bottom: -12px;
-            width: 1.5px;
-            background: linear-gradient(180deg, rgba(92, 230, 20, 0.5) 0%, rgba(92, 230, 20, 0.08) 100%);
+            left: 37px;
+            top: 62px;
+            bottom: -14px;
+            width: 2px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, rgba(92, 230, 20, 0.55) 0%, rgba(92, 230, 20, 0.12) 100%);
         }
 
         /* Custom Apple Scrollbar */
@@ -717,60 +736,54 @@
                 </h2>
             </div>
 
-            <div class="space-y-3.5">
+            <div class="apple-bento rounded-[22px] overflow-hidden">
                 <!-- Shift 1 -->
-                <div class="apple-bento rounded-[22px] p-5 relative reveal delay-1" id="shift-1">
-                    <div class="step-connector"></div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30">
-                            <span class="text-osNeon text-sm font-bold">01</span>
+                <div class="step-row" id="shift-1">
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30 relative z-10">
+                        <span class="text-osNeon text-sm font-bold">01</span>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <h3 class="text-[15px] font-semibold text-white tracking-tight">Understand AI</h3>
+                            <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 1</span>
                         </div>
-                        <div class="min-w-0">
-                            <div class="flex items-center gap-2 mb-1.5">
-                                <h3 class="text-[15px] font-semibold text-white tracking-tight">Understand AI</h3>
-                                <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 1</span>
-                            </div>
-                            <p class="text-[13px] text-appleGray leading-relaxed">
-                                What is AI, really? Cut through the hype. Learn how large language models work, what they can (and can't) do, and why this matters for your career.
-                            </p>
-                        </div>
+                        <p class="text-[13px] text-appleGray leading-relaxed">
+                            What is AI, really? Cut through the hype. Learn how large language models work, what they can (and can't) do, and why this matters for your career.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Shift 2 -->
-                <div class="apple-bento rounded-[22px] p-5 relative reveal delay-2" id="shift-2">
-                    <div class="step-connector"></div>
-                    <div class="flex items-start gap-4">
-                        <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30">
-                            <span class="text-osNeon text-sm font-bold">02</span>
+                <div class="step-row" id="shift-2">
+                    <div class="step-connector" aria-hidden="true"></div>
+                    <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30 relative z-10">
+                        <span class="text-osNeon text-sm font-bold">02</span>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <h3 class="text-[15px] font-semibold text-white tracking-tight">Learn the Tools</h3>
+                            <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 2</span>
                         </div>
-                        <div class="min-w-0">
-                            <div class="flex items-center gap-2 mb-1.5">
-                                <h3 class="text-[15px] font-semibold text-white tracking-tight">Learn the Tools</h3>
-                                <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 2</span>
-                            </div>
-                            <p class="text-[13px] text-appleGray leading-relaxed">
-                                Hands-on with ChatGPT, Claude, Gemini, and more. Master prompt engineering, learn the workflows used by top professionals, and build your AI toolkit.
-                            </p>
-                        </div>
+                        <p class="text-[13px] text-appleGray leading-relaxed">
+                            Hands-on with ChatGPT, Claude, Gemini, and more. Master prompt engineering, learn the workflows used by top professionals, and build your AI toolkit.
+                        </p>
                     </div>
                 </div>
 
                 <!-- Shift 3 -->
-                <div class="apple-bento rounded-[22px] p-5 relative reveal delay-3" id="shift-3">
-                    <div class="flex items-start gap-4">
-                        <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30">
-                            <span class="text-osNeon text-sm font-bold">03</span>
+                <div class="step-row" id="shift-3">
+                    <div class="w-9 h-9 rounded-xl apple-icon-box flex items-center justify-center flex-shrink-0 border-osNeon/30 relative z-10">
+                        <span class="text-osNeon text-sm font-bold">03</span>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2 mb-1.5">
+                            <h3 class="text-[15px] font-semibold text-white tracking-tight">Build Something Real</h3>
+                            <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 3</span>
                         </div>
-                        <div class="min-w-0">
-                            <div class="flex items-center gap-2 mb-1.5">
-                                <h3 class="text-[15px] font-semibold text-white tracking-tight">Build Something Real</h3>
-                                <span class="px-2 py-0.5 rounded-md bg-osNeon/10 text-osNeon text-[9px] font-semibold uppercase tracking-wider">Shift 3</span>
-                            </div>
-                            <p class="text-[13px] text-appleGray leading-relaxed">
-                                Put it all together. Build a real AI-powered project from scratch during the workshop. Walk out with something you can show off.
-                            </p>
-                        </div>
+                        <p class="text-[13px] text-appleGray leading-relaxed">
+                            Put it all together. Build a real AI-powered project from scratch during the workshop. Walk out with something you can show off.
+                        </p>
                     </div>
                 </div>
             </div>
