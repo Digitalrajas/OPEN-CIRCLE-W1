@@ -463,69 +463,10 @@
 
     <main class="w-full max-w-[540px] z-10">
         
-        <!-- 1:1 Square Apple Keynote Display Frame -->
+        <!-- 1:1 Square Apple Keynote Display Frame: event poster (images/banner.jpg, square) -->
         <div class="w-full aspect-square apple-glass rounded-[36px] p-2 mb-10 reveal" id="hero-banner">
-            <div class="w-full h-full apple-recessed rounded-[28px] p-6 md:p-8 flex flex-col items-center justify-between relative overflow-hidden">
-                <!-- Precision Dot Matrix Texture -->
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:22px_22px] opacity-60 pointer-events-none"></div>
-                
-                <!-- Top Row Inside Graphic -->
-                <div class="w-full flex justify-between items-center z-10">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 apple-bento rounded-full text-[11px] font-medium text-white/90 tracking-tight">
-                        <span class="w-1.5 h-1.5 rounded-full bg-osNeon"></span>
-                        <span>Offline Workshop</span>
-                    </div>
-                    <span class="text-[11px] font-mono text-appleGray apple-bento px-3 py-1.5 rounded-full tracking-tight">
-                        WORKSHOP #01
-                    </span>
-                </div>
-
-                <!-- Centerpiece Graphic: Open Circle Orbital Vector + Typography -->
-                <div class="my-auto flex flex-col items-center text-center z-10 px-2">
-                    <!-- Open Circle Orbital Emblem -->
-                    <div class="relative py-3 px-6 mb-3 flex items-center justify-center">
-                        <svg class="w-60 md:w-72 h-28 overflow-visible" viewBox="0 0 300 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <!-- Top Orbit Arc -->
-                            <path d="M 65 35 C 110 -5, 255 -5, 245 42" stroke="url(#appleArcTop)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-                            <!-- Bottom Orbit Arc -->
-                            <path d="M 55 72 C 50 112, 165 108, 210 75" stroke="url(#appleArcBottom)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-                            <!-- Glowing Green Node -->
-                            <circle cx="245" cy="43" r="4" fill="#5CE614" />
-                            <circle cx="245" cy="43" r="9" fill="#5CE614" opacity="0.25" />
-                            <!-- OPEN CIRCLE Typography -->
-                            <text x="150" y="63" text-anchor="middle" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, Inter, sans-serif" font-size="29" font-weight="300" letter-spacing="6.5">OPEN CIRCLE</text>
-                            <defs>
-                                <linearGradient id="appleArcTop" x1="65" y1="35" x2="245" y2="42" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="white" stop-opacity="0.15"/>
-                                    <stop offset="60%" stop-color="white" stop-opacity="0.85"/>
-                                    <stop offset="100%" stop-color="#5CE614" stop-opacity="1"/>
-                                </linearGradient>
-                                <linearGradient id="appleArcBottom" x1="55" y1="72" x2="210" y2="75" gradientUnits="userSpaceOnUse">
-                                    <stop offset="0%" stop-color="white" stop-opacity="0.85"/>
-                                    <stop offset="100%" stop-color="white" stop-opacity="0.15"/>
-                                </linearGradient>
-                            </defs>
-                        </svg>
-                    </div>
-
-                    <span class="inline-block px-2.5 py-0.5 rounded-md bg-osNeon/10 border border-osNeon/20 text-[10px] font-semibold uppercase tracking-[0.16em] text-osNeon mb-2.5">
-                        1:1 Visual Banner Slot
-                    </span>
-                    <h2 class="text-2xl md:text-[32px] font-bold apple-title-gradient tracking-[-0.03em] leading-tight">
-                        AI 101: Learn &amp; Build with AI
-                    </h2>
-                    <p class="text-xs text-appleGray mt-1.5 font-medium tracking-tight">
-                        Open Circle by OpenSkooll
-                    </p>
-                </div>
-
-                <!-- Bottom Bar Inside Graphic -->
-                <div class="w-full pt-4 border-t border-white/[0.07] flex items-center justify-between text-xs z-10">
-                    <span class="flex items-center gap-1.5 text-white/90 font-medium tracking-tight">
-                        <i class="fa-solid fa-location-dot text-osNeon text-[11px]"></i> Nashik
-                    </span>
-                    <span class="text-appleGray font-medium tracking-tight">Only 200 Registrations</span>
-                </div>
+            <div class="w-full h-full apple-recessed rounded-[28px] relative overflow-hidden">
+                <img src="images/banner.jpg" alt="Open Circle Workshop #1 — AI 101: Learn &amp; Build with AI by OpenSkooll" class="absolute inset-0 w-full h-full object-cover" fetchpriority="high">
             </div>
         </div>
 
