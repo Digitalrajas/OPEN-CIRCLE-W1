@@ -56,8 +56,8 @@ This site is deployed via **GitHub Pages** from the `main` branch. Any push to `
 
 ## 📬 Contact
 
-- 💬 **WhatsApp**: [OpenSkooll Support](https://wa.me/910000000000)
-- 📧 **Email**: hello@openskooll.com
+- 💬 **WhatsApp**: [OpenSkooll Support](https://wa.me/917666811499)
+- 📧 **Email**: openskooll@gmail.com
 - 📸 **Instagram**: [@openskooll](https://instagram.com/openskooll)
 
 ---
