@@ -538,17 +538,17 @@
                             <span class="text-[13px] font-semibold text-white tracking-tight">Live Registrations</span>
                         </div>
                         <div class="text-right">
-                            <span id="seats-left" class="text-osNeon font-bold text-xl tracking-tight transition-transform duration-300 inline-block">29</span>
+                            <span id="seats-left" class="text-osNeon font-bold text-xl tracking-tight transition-transform duration-300 inline-block">162</span>
                             <span class="text-xs text-appleGray"> of 200 registrations left</span>
                         </div>
                     </div>
                     <!-- Recessed Apple Progress Track -->
                     <div class="w-full h-2.5 apple-recessed rounded-full overflow-hidden p-[2px]">
-                        <div id="seat-bar" class="h-full bg-gradient-to-r from-[#45b80b] to-osNeon rounded-full transition-all duration-700" style="width: 85.5%"></div>
+                        <div id="seat-bar" class="h-full bg-gradient-to-r from-[#45b80b] to-osNeon rounded-full transition-all duration-700" style="width: 19%"></div>
                     </div>
                     <div class="flex justify-between items-center mt-2.5 text-[11px] text-appleGray">
                         <span>Students from Nashik colleges</span>
-                        <span id="claimed-count" class="font-mono text-white/90 font-semibold">171 registered</span>
+                        <span id="claimed-count" class="font-mono text-white/90 font-semibold">38 registered</span>
                     </div>
                 </div>
 
@@ -891,7 +891,7 @@
                     <div class="flex items-center gap-1.5">
                         <span class="text-[10px] font-bold uppercase tracking-wider text-osNeon">Closing Soon</span>
                         <span class="text-white/25 text-[10px]">•</span>
-                        <span class="text-[11px] font-semibold text-white"><span id="floating-seats-left">29</span> spots left</span>
+                        <span class="text-[11px] font-semibold text-white"><span id="floating-seats-left">162</span> spots left</span>
                     </div>
                     <p class="text-[11px] text-appleGray truncate">Registration ends when timer hits zero</p>
                 </div>
@@ -989,10 +989,47 @@
 
         initCountdown();
 
-        // ========== Realistic FOMO Registration Counter Logic (Out of 200 Spots) ==========
+        // ========== Scheduled Registration Counter (Out of 200 Spots) ==========
+        // Count follows a fixed time-based schedule, so every visitor sees the same number at the same moment.
         const totalSeats = 200;
-        let availableSeats = 29;
-        
+        const SCHEDULE_START_COUNT = 38;   // registered at countdown start (15 Oct 00:00 IST)
+        const SCHEDULE_END_COUNT = 186;    // registered at deadline (17 Oct 24:00 IST)
+        const HOUR_MS = 60 * 60 * 1000;
+
+        // Relative sign-up activity by IST hour of day: quiet overnight, busiest in the evening
+        function hourlyActivity(hourIndex) {
+            const istHour = (hourIndex % 24 + 24) % 24; // schedule starts at 00:00 IST
+            const day = Math.floor(hourIndex / 24);
+            let weight;
+            if (istHour < 7) weight = 0.12;
+            else if (istHour < 12) weight = 0.8;
+            else if (istHour < 17) weight = 1.0;
+            else if (istHour < 23) weight = 1.45;
+            else weight = 0.5;
+            // Final-day rush
+            return weight * [1.0, 1.1, 1.55][Math.min(day, 2)];
+        }
+
+        function scheduledRegistrations(now) {
+            const totalHours = Math.round((deadlineTimestamp - countdownStartTimestamp) / HOUR_MS);
+            const elapsedHours = Math.min(Math.max((now - countdownStartTimestamp) / HOUR_MS, 0), totalHours);
+
+            let totalWeight = 0;
+            let elapsedWeight = 0;
+            for (let h = 0; h < totalHours; h++) {
+                const w = hourlyActivity(h);
+                totalWeight += w;
+                if (h + 1 <= elapsedHours) elapsedWeight += w;
+                else if (h < elapsedHours) elapsedWeight += w * (elapsedHours - h);
+            }
+
+            return SCHEDULE_START_COUNT + Math.floor((SCHEDULE_END_COUNT - SCHEDULE_START_COUNT) * (elapsedWeight / totalWeight));
+        }
+
+        // Bumped locally after this visitor registers so they see their own sign-up counted
+        let ownRegistration = 0;
+        let availableSeats = totalSeats - scheduledRegistrations(Date.now());
+
         const seatsDisplay = document.getElementById('seats-left');
         const floatingSeatsDisplay = document.getElementById('floating-seats-left');
         const claimedDisplay = document.getElementById('claimed-count');
@@ -1016,13 +1053,16 @@
             }
         }
 
-        // Slowly decrement remaining registrations at natural intervals
+        updateSeatUI();
+
+        // Re-check the schedule every few seconds; pulse only when the count actually moves
         setInterval(() => {
-            if (availableSeats > 7 && Math.random() > 0.55) { 
-                availableSeats -= 1;
+            const next = Math.max(1, totalSeats - scheduledRegistrations(Date.now()) - ownRegistration);
+            if (next !== availableSeats) {
+                availableSeats = next;
                 updateSeatUI();
             }
-        }, 9500);
+        }, 5000);
 
         // ========== Form Submission Handler ==========
         // Google Apps Script web app URL (see google-apps-script/Code.gs)
@@ -1066,6 +1106,7 @@
                 success.classList.remove('hidden');
 
                 if (availableSeats > 1) {
+                    ownRegistration = 1;
                     availableSeats -= 1;
                     updateSeatUI();
                 }
